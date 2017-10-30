@@ -1,0 +1,27 @@
+// stdafx.h: включаемый файл дл€ стандартных системных включаемых файлов
+// или включаемых файлов дл€ конкретного проекта, которые часто используютс€, но
+// не часто измен€ютс€
+//
+
+#pragma once
+
+#include "targetver.h"
+
+#include <tchar.h>
+#include <list>
+#include <iostream>
+#include <stdlib.h>
+#include <algorithm>
+#include <ctime>
+#include <conio.h>
+#include <string>
+#include <future>
+#include <thread>
+#include <chrono>
+#include <Windows.h>
+#include <vector>
+#include "GlobalVariables.h"
+
+
+
+// TODO: ”становите здесь ссылки на дополнительные заголовки, требующиес€ дл€ программы
