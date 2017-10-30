@@ -185,9 +185,11 @@ void Road::viewRoad()
 
 		for (int j = 0; j < WIDTH_ROAD; j++)
 		{
+			if (j == 2)
+				cout << "|";
 			if (j == WIDTH_ROAD - 1)
 			{
-				cout << roadPlayer[i][j];
+			    cout << roadPlayer[i][j];
 			}
 			else {
 				if (ReversDisplay == 1)
