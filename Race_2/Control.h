@@ -1,13 +1,13 @@
 #pragma once
 #include "Command.h"
 
-class Receiver
+class Control
 {
 private:
 	Road road;
 	Command* command;
 public:
-	Receiver();
+	Control();
 
 	void turnLeft();
 	void turnRight();
@@ -20,6 +20,6 @@ public:
 	void viewRoad();
 
 	bool isFail(CAR_CONTROL carControll);
-	~Receiver();
+	~Control();
 };
 

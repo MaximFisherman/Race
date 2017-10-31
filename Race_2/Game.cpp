@@ -8,7 +8,7 @@ Game::Game()
 
 void Game::Run()
 {
-	Receiver receiver;
+	Control control;
 	Statistic statistic;
 
 	int count = 0;
@@ -33,8 +33,8 @@ void Game::Run()
 		// Cranking pressing of keys of acceleration and turn of the car. 
 		if (GetAsyncKeyState(VK_RIGHT))
 		{
-			receiver.turnRight();
-			if (receiver.isFail(CAR_CONTROL::RIGHT))
+			control.turnRight();
+			if (control.isFail(CAR_CONTROL::RIGHT))
 			{
 				break;
 			}
@@ -42,9 +42,9 @@ void Game::Run()
 
 		if (GetAsyncKeyState(VK_LEFT))
 		{
-			receiver.turnLeft();
+			control.turnLeft();
 
-			if (receiver.isFail(CAR_CONTROL::LEFT))
+			if (control.isFail(CAR_CONTROL::LEFT))
 			{
 				break;
 			}
@@ -52,8 +52,8 @@ void Game::Run()
 
 		if (GetAsyncKeyState(VK_DOWN))
 		{
-			receiver.turnDown();
-			if (receiver.isFail(CAR_CONTROL::DOWN))
+			control.turnDown();
+			if (control.isFail(CAR_CONTROL::DOWN))
 			{
 				break;
 			}
@@ -62,9 +62,9 @@ void Game::Run()
 
 		if (GetAsyncKeyState(VK_UP))
 		{
-			receiver.turnUp();
+			control.turnUp();
 			
-			if (receiver.isFail(CAR_CONTROL::UP))
+			if (control.isFail(CAR_CONTROL::UP))
 			{
 				break;
 			}
@@ -72,15 +72,15 @@ void Game::Run()
 			statistic.setSpeed(CAR_CONTROL::UP);
 		}
 
-		if (receiver.isFail(CAR_CONTROL::NONE))
+		if (control.isFail(CAR_CONTROL::NONE))
 		{
 			break;
 		}
 
 		statistic.viewStatistic();
 
-		receiver.setBlockOnRoad();
-		receiver.viewRoad();
+		control.setBlockOnRoad();
+		control.viewRoad();
 		
 		Sleep(statistic.getSpeed());
 		

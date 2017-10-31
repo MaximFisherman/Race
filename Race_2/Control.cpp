@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "Receiver.h"
+#include "Control.h"
 #include "UpCommand.h"
 #include "DownCommand.h"
 #include "LeftCommand.h"
@@ -10,59 +10,59 @@
 #include "ClearRoadCommand.h"
 #include "SetBloksOnRoadCommand.h"
 
-Receiver::Receiver()
+Control::Control()
 {
 }
 
-void Receiver::setBlockOnRoad()
+void Control::setBlockOnRoad()
 {
 	command = new SetBloksOnRoadCommand(&road);
 	command->Execute();
 }
 
-void Receiver::clearRoad()
+void Control::clearRoad()
 {
 	command = new ClearRoadCommand(&road);
 	command->Execute();
 }
 
-void Receiver::viewRoad()
+void Control::viewRoad()
 {
 	command = new ViewRoadCommand(&road);
 	command->Execute();
 }
 
-void Receiver::turnRight()
+void Control::turnRight()
 {
 	command = new RightCommand(&road);
 	command->Execute();
 }
 
-void Receiver::turnLeft()
+void Control::turnLeft()
 {
 	command = new LeftCommand(&road);
 	command->Execute();
 }
 
-void Receiver::turnUp()
+void Control::turnUp()
 {
 	command = new UpCommand(&road);
 	command->Execute();
 }
 
-void Receiver::turnDown()
+void Control::turnDown()
 {
 	command = new DownCommand(&road);
 	command->Execute();
 }
 
 
-bool Receiver::isFail(CAR_CONTROL carControll)
+bool Control::isFail(CAR_CONTROL carControll)
 {
 	CheckFailCommand checkFailCommand(&road, carControll);
 	return checkFailCommand.isFail(carControll);
 }
 
-Receiver::~Receiver()
+Control::~Control()
 {
 }

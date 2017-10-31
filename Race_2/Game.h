@@ -1,12 +1,12 @@
 #pragma once
 #include "stdafx.h"
-#include "Receiver.h"
+#include "Control.h"
 #include "Statistic.h"
 
 class Game
 {
 private: 
-	Receiver receiver;
+	Control control;
 	Statistic statistic;
 public:
 	Game();

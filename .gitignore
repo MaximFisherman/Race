@@ -2,8 +2,9 @@ Debug
 ipch
 .vs
 Race/Debug
+Race.VC.db
 Race_2.VC.db
-Race_2.VC.VC.opendb
+Race.VC.VC.opendb
 Release/Race_2.iobj
 Release/Race_2.ipdb
 Release/Race_2.pdb

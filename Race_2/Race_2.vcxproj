@@ -152,7 +152,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GlobalVariables.h" />
     <ClInclude Include="LeftCommand.h" />
-    <ClInclude Include="Receiver.h" />
+    <ClInclude Include="Control.h" />
     <ClInclude Include="RightCommand.h" />
     <ClInclude Include="Road.h" />
     <ClInclude Include="SetBloksOnRoadCommand.h" />
@@ -170,7 +170,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LeftCommand.cpp" />
     <ClCompile Include="Race.cpp" />
-    <ClCompile Include="Receiver.cpp" />
+    <ClCompile Include="Control.cpp" />
     <ClCompile Include="RightCommand.cpp" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="SetBloksOnRoadCommand.cpp" />
