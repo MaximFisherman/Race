@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __CONTROL_H__
+#define __CONTROL_H__
+
 #include "Command.h"
 
 class Control
@@ -8,6 +10,7 @@ private:
 	Command* command;
 public:
 	Control();
+	void startGame(int sizeRoad);
 
 	void turnLeft();
 	void turnRight();
@@ -16,6 +19,8 @@ public:
 
 	void setBlockOnRoad();
 
+	void UpLevel(int difficult);
+
 	void clearRoad();
 	void viewRoad();
 
@@ -23,3 +28,4 @@ public:
 	~Control();
 };
 
+#endif

@@ -4,11 +4,23 @@
 
 Road::Road()
 {
+	setDifficult(10);
+	srand(time(NULL)); // Initialize random seed.
+}
+
+void Road::initializationRoad()
+{
+	// Initialization player road 
+	roadPlayer = new char*[HEIGHT_ROAD];
+	for (int i = 0; i < HEIGHT_ROAD; i++)
+	{
+		roadPlayer[i] = new char[WIDTH_ROAD];
+	}
+
 	for (int i = 0; i < HEIGHT_ROAD; i++)
 	{
 		for (int j = 0; j < WIDTH_ROAD; j++)
 		{
-
 			if (i == ((HEIGHT_ROAD / 2) + 2) && j == (WIDTH_ROAD / 2))
 			{
 				roadPlayer[i][j] = SYMB_CAR;
@@ -83,14 +95,14 @@ void Road::turnDown()
 
 void Road::setBlockRoadLine()
 {
-	int randomPositionBlock = rand() % DIFFICULT + 1;
+	int randomPositionBlock = rand() % difficult + 1;
 
-	if (randomPositionBlock == 4)
+	if (randomPositionBlock == 3)
 	{
 		roadPlayer[HEIGHT_ROAD - 1][2] = SYMB_BLOCK;
 	}
 
-	if (randomPositionBlock == 5)
+	if (randomPositionBlock == 4)
 	{
 		roadPlayer[HEIGHT_ROAD - 1][3] = SYMB_BLOCK;
 	}
@@ -110,7 +122,7 @@ void Road::setBlockRoadLine()
 	// Moving blocks.
 	for (int i = 0; i < coordinateBlocksX.size(); i++)
 	{
-		if (coordinateBlocksY[i] != -1)
+		if (coordinateBlocksY[i] != 0)
 		{
 			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = SYMB_ROAD;
 			roadPlayer[coordinateBlocksY[i] - 1][coordinateBlocksX[i]] = SYMB_BLOCK;
@@ -125,7 +137,7 @@ void Road::setBlockRoadLine()
 
 void Road::setBlockOppositeLine()
 {
-	int randomPositionBlock = rand() % DIFFICULT + 1;
+	int randomPositionBlock = rand() % difficult + 1;
 
 	if (randomPositionBlock == 1)
 	{
@@ -185,8 +197,6 @@ void Road::viewRoad()
 
 		for (int j = 0; j < WIDTH_ROAD; j++)
 		{
-			if (j == 2)
-				cout << "|";
 			if (j == WIDTH_ROAD - 1)
 			{
 			    cout << roadPlayer[i][j];
@@ -242,6 +252,17 @@ void Road::clearRoad()
 	}
 }
 
+void Road::setDifficult(int difficult)
+{
+	this->difficult = difficult;
+}
+
+void Road::setSizeRoad(int height, int width)
+{
+	this->HEIGHT_ROAD = height;
+	this->WIDTH_ROAD = width;
+}
+
 bool Road::isFail(CAR_CONTROL carControll)
 {
 	bool flag = false;
@@ -274,19 +295,13 @@ bool Road::isFail(CAR_CONTROL carControll)
 			}
 			break;
 		case CAR_CONTROL::NONE :
-			for (int i = 0; i < HEIGHT_ROAD; i++)
+			if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == SYMB_BLOCK)
 			{
-				for (int j = 0; j < WIDTH_ROAD; j++)
-				{
-					if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == SYMB_BLOCK)
-					{
-						flag = true;
-					}
-					if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == SYMB_BLOCK)
-					{
-						flag = true;
-					}
-				}
+				flag = true;
+			}
+			if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == SYMB_BLOCK)
+			{
+				flag = true;
 			}
 			break;
 	}

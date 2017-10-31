@@ -1,17 +1,22 @@
-#pragma once
+#ifndef __CHECK_FAIL_COMMAND_H__
+#define __CHECK_FAIL_COMMAND_H__
+
 #include "Command.h"
 
 class CheckFailCommand :
 	public Command
 {
-private:
-	CAR_CONTROL carControll;
 public:
-	CheckFailCommand(Road* road, CAR_CONTROL _carControll);
+	CheckFailCommand(Road& road, CAR_CONTROL _carControll);
 
 	bool isFail(CAR_CONTROL carControll);
 	void Execute();
 
 	~CheckFailCommand();
+
+private:
+	CAR_CONTROL carControll;
 };
+
+#endif
 

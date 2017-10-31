@@ -1,18 +1,16 @@
-#pragma once
+#ifndef __ROAD_H__
+#define __ROAD_H__
+
 #include "stdafx.h"
 
 using namespace std;
 
 class Road
 {
-private:
-	vector<int> coordinateBlocksX;
-	vector<int> coordinateBlocksY;
-	int coordinatePlayerX;
-	int coordinatePlayerY;
 public:
 	Road();
-	char roadPlayer[HEIGHT_ROAD][WIDTH_ROAD];
+	void initializationRoad();
+
 	void searchCoordinatePlayer();
 
 	void turnLeft();
@@ -26,7 +24,25 @@ public:
 	void viewRoad();
 	void clearRoad();
     
+	void setDifficult(int difficult);
+	void setSizeRoad(int height, int width);
+
 	bool isFail(CAR_CONTROL carControll);
 	~Road();
+
+private:
+	vector<int> coordinateBlocksX;
+	vector<int> coordinateBlocksY;
+
+	int coordinatePlayerX;
+	int coordinatePlayerY;
+
+	int WIDTH_ROAD;
+	int HEIGHT_ROAD;
+
+protected:
+    int difficult; // Affects the number of generated blocks.
+	char** roadPlayer;
 };
 
+#endif

@@ -2,13 +2,13 @@
 #include "ClearRoadCommand.h"
 
 
-ClearRoadCommand::ClearRoadCommand(Road* road) : Command(road)
+ClearRoadCommand::ClearRoadCommand(Road& road) : Command(road)
 {
 }
 
 void ClearRoadCommand::Execute()
 {
-	road->clearRoad();
+	road.clearRoad();
 }
 
 

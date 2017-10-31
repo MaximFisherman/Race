@@ -9,42 +9,52 @@ Statistic::Statistic()
 	distance = 0;
 }
 
+void Statistic::setCurrent(State* state)
+{
+	this->state = state;
+}
+
+int Statistic::getDistance()
+{
+	return distance;
+}
+
 void Statistic::setSpeed(CAR_CONTROL carControll)
 {
 	switch (carControll) {
-		case CAR_CONTROL::UP :
-			if (speed <= 0)
-			{
-				speed = 0;
-			}
-			else {
-				speed -= 10;
-			}
+	case CAR_CONTROL::UP:
+		if (speed <= 0)
+		{
+			speed = 0;
+		}
+		else {
+			speed -= INCREASE_SPEED;
+		}
 
-			break;
-		case CAR_CONTROL::DOWN :
-			if (speed >= BASE_SPEED + 60)
-			{
-				speed = BASE_SPEED + 60;
-			}
-			else {
-				speed += 10;
-			}
+		break;
+	case CAR_CONTROL::DOWN:
+		if (speed >= BASE_SPEED)
+		{
+			speed = BASE_SPEED;
+		}
+		else {
+			speed += INCREASE_SPEED;
+		}
 
-			break;
+		break;
 	}
 }
 
 void Statistic::setDistance()
 {
-	distance = (this->timeGame * (convertSpeed(this->speed) * 0.000277778));
+	distance = (this->timeGame * (convertSpeed(this->speed) * KILOMETR_PER_SECOND));
 }
 
 void Statistic::setTime(int startTime)
 {
 	int endTime = clock();
 
-	timeGame = (endTime - startTime) / CLK_TCK; 
+	timeGame = (endTime - startTime) / CLK_TCK;
 }
 
 int Statistic::getSpeed()
@@ -55,22 +65,39 @@ int Statistic::getSpeed()
 int Statistic::convertSpeed(int speed)
 {
 	int baseSpeedReal = BASE_SPEED + 20; // Conditionally 20 km/h.
-	
-	for (int i = speed; i >= 0; i -= 10)
+
+	for (int i = speed; i >= 0; i -= INCREASE_SPEED)
 	{
-		baseSpeedReal -= 10;
+		baseSpeedReal -= INCREASE_SPEED;
 	}
 
 	return baseSpeedReal;
 }
 
-void Statistic::viewStatistic()
-{ 
-	setDistance();
+void Statistic::viewStatistic(bool isView)
+{
+	if (isView == true)
+	{
+		setDistance();
 
-	cout << "Time: " << (timeGame / 60 / 60) << ":" << (timeGame / 60) << ":" << (timeGame % 60) << endl;
-	cout << "Speed: " << convertSpeed(speed) << " km" << endl;
-	cout << "Distance: " << round(distance * 100) / 100. << " km"<< endl;
+		cout << "Time: " << (timeGame / CONVERT_TIME / CONVERT_TIME) << ":" << (timeGame / CONVERT_TIME) << ":" << (timeGame % CONVERT_TIME) << endl;
+		cout << "Speed: " << convertSpeed(speed) << " km" << endl;
+		cout << "Distance: " << round(distance * 100) / 100. << " km" << endl;
+	}
+	else{
+		system("cls");
+		cout << "for open statistic press 'TAB'";
+	}
+	
+}
+
+bool Statistic::isView()
+{
+	if(state->View() == true)
+		return true;
+
+	if(state->Clear() == true)
+		return false;
 }
 
 Statistic::~Statistic()

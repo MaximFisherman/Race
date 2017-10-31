@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="CheckFailCommand.h" />
     <ClInclude Include="ClearRoadCommand.h" />
+    <ClInclude Include="CloseState.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DownCommand.h" />
     <ClInclude Include="Game.h" />
@@ -156,15 +157,20 @@
     <ClInclude Include="RightCommand.h" />
     <ClInclude Include="Road.h" />
     <ClInclude Include="SetBloksOnRoadCommand.h" />
+    <ClInclude Include="StartGameCommand.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="Statistic.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UpCommand.h" />
+    <ClInclude Include="UpLevelCommand.h" />
+    <ClInclude Include="CalculateState.h" />
     <ClInclude Include="ViewRoadCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CheckFailCommand.cpp" />
     <ClCompile Include="ClearRoadCommand.cpp" />
+    <ClCompile Include="CloseState.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DownCommand.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -174,6 +180,8 @@
     <ClCompile Include="RightCommand.cpp" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="SetBloksOnRoadCommand.cpp" />
+    <ClCompile Include="StartGameCommand.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="Statistic.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -182,6 +190,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UpCommand.cpp" />
+    <ClCompile Include="UpLevelCommand.cpp" />
+    <ClCompile Include="CalculateState.cpp" />
     <ClCompile Include="ViewRoadCommand.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

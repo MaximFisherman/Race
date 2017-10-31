@@ -2,13 +2,13 @@
 #include "UpCommand.h"
 
 
-UpCommand::UpCommand(Road* road) : Command(road)
+UpCommand::UpCommand(Road& road) : Command(road)
 {
 }
 
 void UpCommand::Execute()
 {
-	road->turnUp();
+	road.turnUp();
 }
 
 
