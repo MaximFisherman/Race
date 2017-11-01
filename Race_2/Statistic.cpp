@@ -76,13 +76,13 @@ int Statistic::convertSpeed(int speed)
 
 void Statistic::viewStatistic(bool isView)
 {
-	if (isView == true)
+	if (isView)
 	{
 		setDistance();
 
 		cout << "Time: " << (timeGame / CONVERT_TIME / CONVERT_TIME) << ":" << (timeGame / CONVERT_TIME) << ":" << (timeGame % CONVERT_TIME) << endl;
 		cout << "Speed: " << convertSpeed(speed) << " km" << endl;
-		cout << "Distance: " << round(distance * 100) / 100. << " km" << endl;
+		cout << "Distance: " << round(distance * 100) / 100. << " km" << endl; // Rounding to hundredths. 
 	}
 	else{
 		system("cls");

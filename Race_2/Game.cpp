@@ -33,7 +33,7 @@ void Game::Run()
 			cout << "level 2" << endl;
 			system("pause");
 
-			control.UpLevel(7);
+			control.UpLevel(DIFFICULT_LEVEL_ONE);
 			countLevel++;
 			system("cls");
 		}
@@ -44,7 +44,7 @@ void Game::Run()
 			cout << "level 3" << endl;
 			system("pause");
 
-			control.UpLevel(7);
+			control.UpLevel(DIFFICULT_LEVEL_TWO);
 			countLevel++;
 			system("cls");
 		}
@@ -55,7 +55,7 @@ void Game::Run()
 			cout << "level 4" << endl;
 			system("pause");
 
-			control.UpLevel(5);
+			control.UpLevel(DIFFICULT_LEVEL_THREE);
 			countLevel++;
 			system("cls");
 		}
@@ -66,7 +66,7 @@ void Game::Run()
 			cout << "level 5" << endl;
 			system("pause");
 
-			control.UpLevel(4);
+			control.UpLevel(DIFFICULT_LEVEL_FOUR);
 			countLevel++;
 			system("cls");
 		}

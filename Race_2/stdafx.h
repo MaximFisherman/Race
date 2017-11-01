@@ -19,6 +19,7 @@
 #include <thread>
 #include <chrono>
 #include <Windows.h>
+#include <memory>
 #include <vector>
 #include "GlobalVariables.h"
 
