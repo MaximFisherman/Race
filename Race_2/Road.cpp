@@ -23,10 +23,10 @@ void Road::initializationRoad()
 		{
 			if (i == ((HEIGHT_ROAD / 2) + 2) && j == (WIDTH_ROAD / 2))
 			{
-				roadPlayer[i][j] = SYMB_CAR;
+				roadPlayer[i][j] = global::SYMB_CAR;
 			}
 			else {
-				roadPlayer[i][j] = SYMB_ROAD;
+				roadPlayer[i][j] = global::SYMB_ROAD;
 			}
 		}
 	}
@@ -39,7 +39,7 @@ void Road::searchCoordinatePlayer()
 	{
 		for (int j = 0; j < WIDTH_ROAD; j++)
 		{
-			if (roadPlayer[i][j] == SYMB_CAR)
+			if (roadPlayer[i][j] == global::SYMB_CAR)
 			{
 				coordinatePlayerY = i;
 				coordinatePlayerX = j;
@@ -55,8 +55,8 @@ void Road::turnLeft()
 
 	if (coordinatePlayerX - 1 != -1)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = SYMB_ROAD;
-		roadPlayer[coordinatePlayerY][coordinatePlayerX - 1] = SYMB_CAR;
+		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[coordinatePlayerY][coordinatePlayerX - 1] = global::SYMB_CAR;
 	}
 }
 
@@ -66,8 +66,8 @@ void Road::turnRight()
 
 	if (coordinatePlayerX + 1 != WIDTH_ROAD)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = SYMB_ROAD;
-		roadPlayer[coordinatePlayerY][coordinatePlayerX + 1] = SYMB_CAR;
+		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[coordinatePlayerY][coordinatePlayerX + 1] = global::SYMB_CAR;
 	}
 }
 
@@ -77,8 +77,8 @@ void Road::turnUp()
 
 	if (coordinatePlayerY - 1 != 1)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = SYMB_ROAD;
-		roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] = SYMB_CAR;
+		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] = global::SYMB_CAR;
 	}
 }
 
@@ -88,8 +88,8 @@ void Road::turnDown()
 
 	if (coordinatePlayerY + 1 != HEIGHT_ROAD - 2)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = SYMB_ROAD;
-		roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] = SYMB_CAR;
+		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] = global::SYMB_CAR;
 	}
 }
 
@@ -99,19 +99,19 @@ void Road::setBlockRoadLine()
 
 	if (randomPositionBlock == 3)
 	{
-		roadPlayer[HEIGHT_ROAD - 1][2] = SYMB_BLOCK;
+		roadPlayer[HEIGHT_ROAD - 1][2] = global::SYMB_BLOCK;
 	}
 
 	if (randomPositionBlock == 4)
 	{
-		roadPlayer[HEIGHT_ROAD - 1][3] = SYMB_BLOCK;
+		roadPlayer[HEIGHT_ROAD - 1][3] = global::SYMB_BLOCK;
 	}
 	// Search for a block symbol in a two-dimensional matrix.
 	for (int i = 0; i < HEIGHT_ROAD; i++)
 	{
 		for (int j = WIDTH_ROAD / 2; j < WIDTH_ROAD; j++)
 		{
-			if (roadPlayer[i][j] == SYMB_BLOCK)
+			if (roadPlayer[i][j] == global::SYMB_BLOCK)
 			{
 				coordinateBlocksX.push_back(j);
 				coordinateBlocksY.push_back(i);
@@ -124,11 +124,11 @@ void Road::setBlockRoadLine()
 	{
 		if (coordinateBlocksY[i] != 0)
 		{
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = SYMB_ROAD;
-			roadPlayer[coordinateBlocksY[i] - 1][coordinateBlocksX[i]] = SYMB_BLOCK;
+			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
+			roadPlayer[coordinateBlocksY[i] - 1][coordinateBlocksX[i]] = global::SYMB_BLOCK;
 		}
 		else {
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = SYMB_ROAD;
+			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
 		}
 	}
 	coordinateBlocksX.clear();
@@ -141,12 +141,12 @@ void Road::setBlockOppositeLine()
 
 	if (randomPositionBlock == 1)
 	{
-		roadPlayer[0][0] = SYMB_BLOCK;
+		roadPlayer[0][0] = global::SYMB_BLOCK;
 	}
 
 	if (randomPositionBlock == 2)
 	{
-		roadPlayer[0][1] = SYMB_BLOCK;
+		roadPlayer[0][1] = global::SYMB_BLOCK;
 	}
 
 	// Search for a block symbol in a two-dimensional matrix.
@@ -154,7 +154,7 @@ void Road::setBlockOppositeLine()
 	{
 		for (int j = 0; j < WIDTH_ROAD / 2; j++)
 		{
-			if (roadPlayer[i][j] == SYMB_BLOCK)
+			if (roadPlayer[i][j] == global::SYMB_BLOCK)
 			{
 				coordinateBlocksX.push_back(j);
 				coordinateBlocksY.push_back(i);
@@ -167,11 +167,11 @@ void Road::setBlockOppositeLine()
 	{
 		if (coordinateBlocksY[i] != HEIGHT_ROAD - 1)
 		{
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = SYMB_ROAD;
-			roadPlayer[coordinateBlocksY[i] + 1][coordinateBlocksX[i]] = SYMB_BLOCK;
+			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
+			roadPlayer[coordinateBlocksY[i] + 1][coordinateBlocksX[i]] = global::SYMB_BLOCK;
 		}
 		else {
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = SYMB_ROAD;
+			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
 		}
 	}
 
@@ -243,10 +243,10 @@ void Road::clearRoad()
 
 			if (i == ((HEIGHT_ROAD / 2) + 2) && j == (WIDTH_ROAD / 2))
 			{
-				roadPlayer[i][j] = SYMB_CAR;
+				roadPlayer[i][j] = global::SYMB_CAR;
 			}
 			else {
-				roadPlayer[i][j] = SYMB_ROAD;
+				roadPlayer[i][j] = global::SYMB_ROAD;
 			}
 		}
 	}
@@ -263,43 +263,43 @@ void Road::setSizeRoad(int height, int width)
 	this->WIDTH_ROAD = width;
 }
 
-bool Road::isFail(CAR_CONTROL carControll)
+bool Road::isFail(global::CAR_CONTROL carControll)
 {
 	bool flag = false;
 
 	searchCoordinatePlayer();
 
 	switch (carControll) {
-		case CAR_CONTROL::RIGHT : 
-			if (roadPlayer[coordinatePlayerY][coordinatePlayerX + 1] == SYMB_BLOCK)
+		case global::CAR_CONTROL::RIGHT : 
+			if (roadPlayer[coordinatePlayerY][coordinatePlayerX + 1] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
-		case CAR_CONTROL::LEFT :
-			if (roadPlayer[coordinatePlayerY][coordinatePlayerX - 1] == SYMB_BLOCK)
+		case global::CAR_CONTROL::LEFT :
+			if (roadPlayer[coordinatePlayerY][coordinatePlayerX - 1] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
-		case CAR_CONTROL::UP :
-			if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == SYMB_BLOCK)
+		case global::CAR_CONTROL::UP :
+			if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
-		case CAR_CONTROL::DOWN :
-			if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == SYMB_BLOCK)
+		case global::CAR_CONTROL::DOWN :
+			if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
-		case CAR_CONTROL::NONE :
-			if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == SYMB_BLOCK)
+		case global::CAR_CONTROL::NONE :
+			if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
-			if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == SYMB_BLOCK)
+			if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}

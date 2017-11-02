@@ -5,7 +5,7 @@
 Statistic::Statistic()
 {
 	timeGame = 0;
-	speed = BASE_SPEED;
+	speed = global::BASE_SPEED;
 	distance = 0;
 }
 
@@ -19,35 +19,50 @@ int Statistic::getDistance()
 	return distance;
 }
 
-void Statistic::setSpeed(CAR_CONTROL carControll)
+int Statistic::convertToMinutes(int time)
+{
+	return (time / global::CONVERT_TIME);
+}
+
+int Statistic::convertToHour(int time)
+{
+	return (time / global::CONVERT_TIME / global::CONVERT_TIME);
+}
+
+int Statistic::convertToSecond(int time)
+{
+	return (time % global::CONVERT_TIME);
+}
+
+void Statistic::setSpeed(global::CAR_CONTROL carControll)
 {
 	switch (carControll) {
-	case CAR_CONTROL::UP:
-		if (speed <= 0)
-		{
-			speed = 0;
-		}
-		else {
-			speed -= INCREASE_SPEED;
-		}
+		case global::CAR_CONTROL::UP:
+			if (speed <= 0)
+			{
+				speed = 0;
+			}
+			else {
+				speed -= global::INCREASE_SPEED;
+			}
 
-		break;
-	case CAR_CONTROL::DOWN:
-		if (speed >= BASE_SPEED)
-		{
-			speed = BASE_SPEED;
-		}
-		else {
-			speed += INCREASE_SPEED;
-		}
+			break;
+		case global::CAR_CONTROL::DOWN:
+			if (speed >= global::BASE_SPEED)
+			{
+				speed = global::BASE_SPEED;
+			}
+			else {
+				speed += global::INCREASE_SPEED;
+			}
 
-		break;
+			break;
 	}
 }
 
 void Statistic::setDistance()
 {
-	distance = (this->timeGame * (convertSpeed(this->speed) * KILOMETR_PER_SECOND));
+	distance = (this->timeGame * (convertSpeed(this->speed) * global::KILOMETR_PER_SECOND));
 }
 
 void Statistic::setTime(int startTime)
@@ -64,11 +79,11 @@ int Statistic::getSpeed()
 
 int Statistic::convertSpeed(int speed)
 {
-	int baseSpeedReal = BASE_SPEED + 20; // Conditionally 20 km/h.
+	int baseSpeedReal = global::BASE_SPEED + 20; // Conditionally 20 km/h.
 
-	for (int i = speed; i >= 0; i -= INCREASE_SPEED)
+	for (int i = speed; i >= 0; i -= global::INCREASE_SPEED)
 	{
-		baseSpeedReal -= INCREASE_SPEED;
+		baseSpeedReal -= global::INCREASE_SPEED;
 	}
 
 	return baseSpeedReal;
@@ -80,7 +95,7 @@ void Statistic::viewStatistic(bool isView)
 	{
 		setDistance();
 
-		cout << "Time: " << (timeGame / CONVERT_TIME / CONVERT_TIME) << ":" << (timeGame / CONVERT_TIME) << ":" << (timeGame % CONVERT_TIME) << endl;
+		cout << "Time: " << convertToHour(timeGame)  << ":" << convertToMinutes(timeGame) << ":" << convertToSecond(timeGame) << endl;
 		cout << "Speed: " << convertSpeed(speed) << " km" << endl;
 		cout << "Distance: " << round(distance * 100) / 100. << " km" << endl; // Rounding to hundredths. 
 	}

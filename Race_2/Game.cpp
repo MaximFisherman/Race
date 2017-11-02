@@ -27,46 +27,46 @@ void Game::Run()
 			control.UpLevel(10);
 		}
 
-		if (statistic.getDistance() >= LEVEL_ONE && statistic.getDistance() <= LEVEL_TWO && countLevel == 0)
+		if (statistic.getDistance() >= global::LEVEL_ONE && statistic.getDistance() <= global::LEVEL_TWO && countLevel == 0)
 		{
 			system("cls");
 			cout << "level 2" << endl;
 			system("pause");
 
-			control.UpLevel(DIFFICULT_LEVEL_ONE);
+			control.UpLevel(global::DIFFICULT_LEVEL_ONE);
 			countLevel++;
 			system("cls");
 		}
 
-		if (statistic.getDistance() >= LEVEL_TWO && statistic.getDistance() <= LEVEL_THREE && countLevel == 1)
+		if (statistic.getDistance() >= global::LEVEL_TWO && statistic.getDistance() <= global::LEVEL_THREE && countLevel == 1)
 		{
 			system("cls");
 			cout << "level 3" << endl;
 			system("pause");
 
-			control.UpLevel(DIFFICULT_LEVEL_TWO);
+			control.UpLevel(global::DIFFICULT_LEVEL_TWO);
 			countLevel++;
 			system("cls");
 		}
 
-		if (statistic.getDistance() >= LEVEL_THREE && statistic.getDistance() <= LEVEL_FOUR && countLevel == 2)
+		if (statistic.getDistance() >= global::LEVEL_THREE && statistic.getDistance() <= global::LEVEL_FOUR && countLevel == 2)
 		{
 			system("cls");
 			cout << "level 4" << endl;
 			system("pause");
 
-			control.UpLevel(DIFFICULT_LEVEL_THREE);
+			control.UpLevel(global::DIFFICULT_LEVEL_THREE);
 			countLevel++;
 			system("cls");
 		}
 
-		if (statistic.getDistance() >= LEVEL_FOUR && countLevel == 3)
+		if (statistic.getDistance() >= global::LEVEL_FOUR && countLevel == 3)
 		{
 			system("cls");
 			cout << "level 5" << endl;
 			system("pause");
 
-			control.UpLevel(DIFFICULT_LEVEL_FOUR);
+			control.UpLevel(global::DIFFICULT_LEVEL_FOUR);
 			countLevel++;
 			system("cls");
 		}
@@ -83,7 +83,7 @@ void Game::Run()
 		// Cranking pressing of keys of acceleration and turn of the car. 
 		if (GetAsyncKeyState(VK_RIGHT))
 		{
-			if (control.isFail(CAR_CONTROL::RIGHT))
+			if (control.isFail(global::CAR_CONTROL::RIGHT))
 			{
 				break;
 			}
@@ -93,7 +93,7 @@ void Game::Run()
 
 		if (GetAsyncKeyState(VK_LEFT))
 		{
-			if (control.isFail(CAR_CONTROL::LEFT))
+			if (control.isFail(global::CAR_CONTROL::LEFT))
 			{
 				break;
 			}
@@ -103,23 +103,23 @@ void Game::Run()
 
 		if (GetAsyncKeyState(VK_DOWN))
 		{
-			if (control.isFail(CAR_CONTROL::DOWN))
+			if (control.isFail(global::CAR_CONTROL::DOWN))
 			{
 				break;
 			}
 
-			statistic.setSpeed(CAR_CONTROL::DOWN);
+			statistic.setSpeed(global::CAR_CONTROL::DOWN);
 			control.turnDown();
 		}
 
 		if (GetAsyncKeyState(VK_UP))
 		{	
-			if (control.isFail(CAR_CONTROL::UP))
+			if (control.isFail(global::CAR_CONTROL::UP))
 			{
 				break;
 			}
 
-			statistic.setSpeed(CAR_CONTROL::UP);
+			statistic.setSpeed(global::CAR_CONTROL::UP);
 			control.turnUp();
 		}
 
@@ -136,7 +136,7 @@ void Game::Run()
 			}
 		}
 
-		if (control.isFail(CAR_CONTROL::NONE))
+		if (control.isFail(global::CAR_CONTROL::NONE))
 		{
 			break;
 		}
@@ -186,10 +186,10 @@ void Game::choiceSizeRoad(Control& control)
 	cin >> action;
 
 	if (action == 1)
-		control.startGame(TWO_WAY_ROAD);
+		control.startGame(global::TWO_WAY_ROAD);
 
-	if(action == 2)
-		control.startGame(FOUR_WAY_ROAD);
+	if (action == 2)
+		control.startGame(global::FOUR_WAY_ROAD);
 }
 
 Game::~Game()

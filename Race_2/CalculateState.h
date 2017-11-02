@@ -6,7 +6,7 @@ class CalculateState :
 	public State
 {
 public:
-	CalculateState(Statistic& statistic);
+	CalculateState(const Statistic& statistic);
 
 	bool View();
 	bool Clear();

@@ -27,7 +27,7 @@ public:
 	void setDifficult(int difficult);
 	void setSizeRoad(int height, int width);
 
-	bool isFail(CAR_CONTROL carControll);
+	bool isFail(global::CAR_CONTROL carControll);
 	~Road();
 
 private:

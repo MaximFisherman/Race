@@ -24,7 +24,7 @@ public:
 	void clearRoad();
 	void viewRoad();
 
-	bool isFail(CAR_CONTROL carControll);
+	bool isFail(global::CAR_CONTROL carControll);
 	~Control();
 };
 

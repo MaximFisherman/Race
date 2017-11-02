@@ -72,7 +72,7 @@ void Control::turnDown()
 }
 
 
-bool Control::isFail(CAR_CONTROL carControll)
+bool Control::isFail(global::CAR_CONTROL carControll)
 {
 	CheckFailCommand checkFailCommand(road, carControll);
 	return checkFailCommand.isFail(carControll);

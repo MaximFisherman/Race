@@ -7,7 +7,7 @@ class CloseState :
 	public State
 {
 public:
-	CloseState(Statistic& _statistic);
+	CloseState(const Statistic& _statistic);
 
 	bool View();
 	bool Clear();

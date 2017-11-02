@@ -2,7 +2,7 @@
 #include "CalculateState.h"
 
 
-CalculateState::CalculateState(Statistic& _statistic)
+CalculateState::CalculateState(const Statistic& _statistic)
 {
 	statistic = _statistic;
 }

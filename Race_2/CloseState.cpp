@@ -2,7 +2,7 @@
 #include "CloseState.h"
 
 
-CloseState::CloseState(Statistic& _statistic)
+CloseState::CloseState(const Statistic& _statistic)
 {
 	statistic = _statistic;
 }
