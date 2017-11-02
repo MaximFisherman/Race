@@ -80,4 +80,5 @@ bool Control::isFail(global::CAR_CONTROL carControll)
 
 Control::~Control()
 {
+	delete command;
 }

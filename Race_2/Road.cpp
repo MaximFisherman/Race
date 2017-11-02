@@ -95,17 +95,33 @@ void Road::turnDown()
 
 void Road::setBlockRoadLine()
 {
-	int randomPositionBlock = rand() % difficult + 1;
+	int randomPositionBlock = 0;
+	vector<int> roadLine;
 
-	if (randomPositionBlock == 3)
+	// Initialization roadLine
+	for (size_t i = WIDTH_ROAD / 2; i < WIDTH_ROAD; i++)
 	{
-		roadPlayer[HEIGHT_ROAD - 1][2] = global::SYMB_BLOCK;
+		roadLine.push_back(i);
 	}
 
-	if (randomPositionBlock == 4)
+	// Ñheck the number of lanes on the road.
+	if (WIDTH_ROAD == global::SIX_WAY_ROAD)
 	{
-		roadPlayer[HEIGHT_ROAD - 1][3] = global::SYMB_BLOCK;
+		randomPositionBlock = rand() % (difficult + 6) + 0;
 	}
+	else {
+		randomPositionBlock = rand() % difficult + 0;
+	}
+
+	// Set block on road line.
+	for (int i = WIDTH_ROAD / 2; i < WIDTH_ROAD; i++)
+	{
+		if (randomPositionBlock == i)
+		{
+			roadPlayer[HEIGHT_ROAD - 1][i] = global::SYMB_BLOCK;
+		}
+	}
+
 	// Search for a block symbol in a two-dimensional matrix.
 	for (int i = 0; i < HEIGHT_ROAD; i++)
 	{
@@ -137,16 +153,32 @@ void Road::setBlockRoadLine()
 
 void Road::setBlockOppositeLine()
 {
-	int randomPositionBlock = rand() % difficult + 1;
+	int randomPositionBlock = 0;
+	vector<int> roadLine;
 
-	if (randomPositionBlock == 1)
+	// Initialization roadLine
+	for (size_t i = 0; i < WIDTH_ROAD / 2; i++)
 	{
-		roadPlayer[0][0] = global::SYMB_BLOCK;
+		roadLine.push_back(i);
 	}
 
-	if (randomPositionBlock == 2)
+	// Ñheck the number of lanes on the road.
+	if (WIDTH_ROAD == global::SIX_WAY_ROAD)
 	{
-		roadPlayer[0][1] = global::SYMB_BLOCK;
+		randomPositionBlock = rand() % (difficult + 6) + 0;
+	}
+	else {
+		randomPositionBlock = rand() % difficult + 0;
+	}
+
+
+	// Set block on road line.
+	for (int i = 0; i < WIDTH_ROAD / 2; i++)
+	{
+		if (randomPositionBlock == i)
+		{
+			roadPlayer[0][i] = global::SYMB_BLOCK;
+		}
 	}
 
 	// Search for a block symbol in a two-dimensional matrix.
@@ -311,4 +343,9 @@ bool Road::isFail(global::CAR_CONTROL carControll)
 
 Road::~Road()
 {
+	// Delete road
+	for (size_t i = 0; i < HEIGHT_ROAD; ++i)
+		delete[] roadPlayer[i];
+
+	delete[] roadPlayer;
 }

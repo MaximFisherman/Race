@@ -11,7 +11,7 @@ class Statistic
 	class State* state;
 public:
 	Statistic();
-	void setCurrent(State* state);
+	void setView(State* state);
 
 	void setSpeed(global::CAR_CONTROL carControll);
 	void setDistance();

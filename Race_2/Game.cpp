@@ -5,6 +5,7 @@
 
 Game::Game()
 {
+ 
 }
 
 void Game::Run()
@@ -12,8 +13,11 @@ void Game::Run()
 	Control control;
 	Statistic statistic;
 
+	// Initialization state view statistic.
+	State* state = new CalculateState(statistic);
+
 	choiceSizeRoad(control);
-	statistic.setCurrent(new CalculateState(statistic));
+	statistic.setView(state);
 
 	int count = 0;
 	int countLevel = 0;
@@ -126,14 +130,17 @@ void Game::Run()
 		// Change state view statistic
 		if (GetAsyncKeyState(VK_TAB))
 		{
-			++count;
-			if (count & 1 == 1) 
+			++countPressTab;
+			
+			if (countPressTab & 1 == 1) 
 			{
-				statistic.setCurrent(new CloseState(statistic));
+				state = new CloseState(statistic);
 			}
 			else {
-				statistic.setCurrent(new CalculateState(statistic));
+				state = new CalculateState(statistic);
 			}
+
+			statistic.setView(state);
 		}
 
 		if (control.isFail(global::CAR_CONTROL::NONE))
@@ -160,6 +167,9 @@ void Game::Run()
 	system("cls");
 	statistic.viewStatistic(statistic.isView());
 	massageGameOver();
+
+	// Clear memory.
+	delete state;
 }
 
 void Game::massageGameOver()
@@ -180,13 +190,13 @@ void Game::redrawing(int x, int y)
 
 void Game::choiceSizeRoad(Control& control)
 {
-	cout << "Please select road entered one for two-road, entered two for four-road" << endl;
+	cout << "Choose a six-lane(press 1) or four-lane road(press 2)" << endl;
 
 	int action;
 	cin >> action;
 
 	if (action == 1)
-		control.startGame(global::TWO_WAY_ROAD);
+		control.startGame(global::SIX_WAY_ROAD);
 
 	if (action == 2)
 		control.startGame(global::FOUR_WAY_ROAD);
@@ -194,4 +204,5 @@ void Game::choiceSizeRoad(Control& control)
 
 Game::~Game()
 {
+	
 }

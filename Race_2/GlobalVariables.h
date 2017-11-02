@@ -10,7 +10,7 @@ namespace global {
 	const double KILOMETR_PER_SECOND = 0.000277778;
 	const int CONVERT_TIME = 60;
 	const int LEVEL_ONE = 1;
-	const int TWO_WAY_ROAD = 2;
+	const int SIX_WAY_ROAD = 6;
 	const int FOUR_WAY_ROAD = 4;
 	const int DIFFICULT_LEVEL_ONE = 7;
 	const int DIFFICULT_LEVEL_TWO = 6;
