@@ -2,13 +2,13 @@
 #include "LeftCommand.h"
 
 
-LeftCommand::LeftCommand(Road& road) : Command(road)
+LeftCommand::LeftCommand(RoadCommand& _roadCommand) : Command(_roadCommand)
 {
 }
 
 void LeftCommand::Execute()
 {
-	road.turnLeft();
+	roadCommand.turnLeft();
 }
 
 

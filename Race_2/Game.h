@@ -5,12 +5,14 @@
 #include "Control.h"
 #include "Statistic.h"
 #include "Road.h"
+#include "Options.h"
 
 class Game
 {
 private: 
 	Control control;
 	Statistic statistic;
+	Options options;
 public:
 	Game();
 	void redrawing(int x, int y);

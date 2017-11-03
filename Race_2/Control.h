@@ -6,7 +6,7 @@
 class Control
 {
 private:
-	Road road;
+	RoadCommand roadCommand;
 	Command* command;
 public:
 	Control();

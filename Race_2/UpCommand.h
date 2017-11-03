@@ -7,7 +7,7 @@ class UpCommand :
 	public Command
 {
 public:
-	UpCommand(Road& road);
+	UpCommand(RoadCommand& _roadCommand);
 
 	void Execute();
 

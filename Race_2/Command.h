@@ -1,13 +1,13 @@
 #ifndef __COMMAND_H__
 #define __COMMAND_H__
 
-#include "Road.h" 
+#include "RoadCommand.h" 
 
 class Command
 {
 protected:
-	Command(Road& road);
-	Road& road;
+	Command(RoadCommand& road);
+	RoadCommand& roadCommand;
 public:
 	virtual ~Command();
 	virtual void Execute() = 0;

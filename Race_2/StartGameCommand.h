@@ -7,7 +7,7 @@ class StartGameCommand :
 	public Command
 {
 public:
-	StartGameCommand(Road& road, int _sizeRoad);
+	StartGameCommand(RoadCommand& _roadCommand, int _sizeRoad);
 
 	void Execute();
 

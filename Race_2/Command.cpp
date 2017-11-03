@@ -2,7 +2,7 @@
 #include "Command.h"
 
 
-Command::Command(Road& road) : road(road)
+Command::Command(RoadCommand& _roadCommand) : roadCommand(_roadCommand)
 {
 }
 

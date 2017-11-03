@@ -8,7 +8,6 @@ using namespace std;
 
 class Statistic
 {
-	class State* state;
 public:
 	Statistic();
 	void setView(State* state);
@@ -31,6 +30,7 @@ public:
 	~Statistic();
 
 private:
+	State* state;
 	int timeGame;
 	double distance;
 	int speed;

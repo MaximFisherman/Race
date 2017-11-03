@@ -7,7 +7,7 @@ class SetBloksOnRoadCommand :
 	public Command
 {
 public:
-	SetBloksOnRoadCommand(Road& road);
+	SetBloksOnRoadCommand(RoadCommand& _roadCommand);
 
 	void Execute();
 

@@ -2,6 +2,7 @@
 #define __CLOSE_STATE_H__
 
 #include "State.h"
+#include "Statistic.h"
 
 class CloseState :
 	public State

@@ -2,6 +2,8 @@
 #define __VIEW_H__
 
 #include "State.h"
+#include "Statistic.h"
+
 class CalculateState :
 	public State
 {

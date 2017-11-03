@@ -7,7 +7,7 @@ class ClearRoadCommand :
 	public Command
 {
 public:
-	ClearRoadCommand(Road& road);
+	ClearRoadCommand(RoadCommand& _roadCommand);
 
 	void Execute();
 

@@ -2,13 +2,13 @@
 #include "ViewRoadCommand.h"
 
 
-ViewRoadCommand::ViewRoadCommand(Road& road) : Command(road)
+ViewRoadCommand::ViewRoadCommand(RoadCommand& _roadCommand) : Command(_roadCommand)
 {
 }
 
 void ViewRoadCommand::Execute()
 {
-	road.viewRoad();
+	roadCommand.viewRoad();
 }
 
 

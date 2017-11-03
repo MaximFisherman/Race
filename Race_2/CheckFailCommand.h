@@ -7,7 +7,7 @@ class CheckFailCommand :
 	public Command
 {
 public:
-	CheckFailCommand(Road& road, global::CAR_CONTROL _carControll);
+	CheckFailCommand(RoadCommand& _roadCommand, global::CAR_CONTROL _carControll);
 
 	bool isFail(global::CAR_CONTROL carControll);
 	void Execute();

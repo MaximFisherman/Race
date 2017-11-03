@@ -7,7 +7,7 @@ class LeftCommand :
 	public Command 
 {
 public:
-	LeftCommand(Road& road);
+	LeftCommand(RoadCommand& road);
 
 	void Execute();
 

@@ -7,7 +7,7 @@ class RightCommand :
 	public Command
 {
 public:
-	RightCommand(Road& road);
+	RightCommand(RoadCommand& _roadCommand);
 
 	void Execute();
 

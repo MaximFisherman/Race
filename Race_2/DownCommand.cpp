@@ -2,13 +2,13 @@
 #include "DownCommand.h"
 
 
-DownCommand::DownCommand(Road& road) : Command(road)
+DownCommand::DownCommand(RoadCommand& _roadCommand) : Command(_roadCommand)
 {
 }
 
 void DownCommand::Execute()
 {
-	road.turnDown();
+	roadCommand.turnDown();
 }
 
 

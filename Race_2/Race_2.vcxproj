@@ -154,8 +154,10 @@
     <ClInclude Include="GlobalVariables.h" />
     <ClInclude Include="LeftCommand.h" />
     <ClInclude Include="Control.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="RightCommand.h" />
     <ClInclude Include="Road.h" />
+    <ClInclude Include="RoadCommand.h" />
     <ClInclude Include="SetBloksOnRoadCommand.h" />
     <ClInclude Include="StartGameCommand.h" />
     <ClInclude Include="State.h" />
@@ -175,10 +177,12 @@
     <ClCompile Include="DownCommand.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LeftCommand.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="Race.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="RightCommand.cpp" />
     <ClCompile Include="Road.cpp" />
+    <ClCompile Include="RoadCommand.cpp" />
     <ClCompile Include="SetBloksOnRoadCommand.cpp" />
     <ClCompile Include="StartGameCommand.cpp" />
     <ClCompile Include="State.cpp" />

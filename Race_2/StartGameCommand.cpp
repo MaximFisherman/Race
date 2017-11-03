@@ -2,15 +2,15 @@
 #include "StartGameCommand.h"
 
 
-StartGameCommand::StartGameCommand(Road& road, int _sizeRoad) : Command(road), sizeRoad(_sizeRoad)
+StartGameCommand::StartGameCommand(RoadCommand& _roadCommand, int _sizeRoad) : Command(_roadCommand), sizeRoad(_sizeRoad)
 {
-	road.setSizeRoad(20, sizeRoad);
+	roadCommand.setSizeRoad(20, sizeRoad);
 }
 
 void StartGameCommand::Execute()
 {
 	
-	road.initializationRoad();
+	roadCommand.initializationRoad();
 }
 
 StartGameCommand::~StartGameCommand()

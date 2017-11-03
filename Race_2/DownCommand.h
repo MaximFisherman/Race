@@ -7,7 +7,7 @@ class DownCommand :
 	public Command
 {
 public:
-	DownCommand(Road& road);
+	DownCommand(RoadCommand& _roadCommand);
 
 	void Execute();
 

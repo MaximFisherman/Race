@@ -2,15 +2,15 @@
 #include "SetBloksOnRoadCommand.h"
 
 
-SetBloksOnRoadCommand::SetBloksOnRoadCommand(Road& road) : Command(road)
+SetBloksOnRoadCommand::SetBloksOnRoadCommand(RoadCommand& _roadCommand) : Command(_roadCommand)
 {
 }
 
 
 void SetBloksOnRoadCommand::Execute()
 {
-	road.setBlockOppositeLine();
-	road.setBlockRoadLine();
+	roadCommand.setBlockOppositeLine();
+	roadCommand.setBlockRoadLine();
 }
 
 SetBloksOnRoadCommand::~SetBloksOnRoadCommand()

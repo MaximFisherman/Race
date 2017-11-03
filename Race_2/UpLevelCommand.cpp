@@ -2,13 +2,13 @@
 #include "UpLevelCommand.h"
 
 
-UpLevelCommand::UpLevelCommand(Road& road, int _difficult) : Command(road),  difficult(_difficult)
+UpLevelCommand::UpLevelCommand(RoadCommand& _roadCommand, int _difficult) : Command(_roadCommand),  difficult(_difficult)
 {
 }
 
 void UpLevelCommand::Execute()
 {
-	road.setDifficult(difficult);
+	roadCommand.setDifficult(difficult);
 }
 
 

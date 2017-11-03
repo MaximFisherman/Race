@@ -4,10 +4,10 @@
 #include "Command.h"
 
 class ViewRoadCommand : 
-	public Command 
+	public Command
 {
 public:
-	ViewRoadCommand(Road& road);
+	ViewRoadCommand(RoadCommand& _roadCommand);
 
 	void Execute();
 

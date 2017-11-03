@@ -12,6 +12,7 @@ void Game::Run()
 {
 	Control control;
 	Statistic statistic;
+	Options options;
 
 	// Initialization state view statistic.
 	State* state = new CalculateState(statistic);
@@ -195,11 +196,14 @@ void Game::choiceSizeRoad(Control& control)
 	int action;
 	cin >> action;
 
-	if (action == 1)
-		control.startGame(global::SIX_WAY_ROAD);
-
-	if (action == 2)
-		control.startGame(global::FOUR_WAY_ROAD);
+	switch (action) {
+		case 1 :
+			control.startGame(global::SIX_WAY_ROAD); 
+			break;
+		case 2 : 
+			control.startGame(global::FOUR_WAY_ROAD);
+			break;
+	}	
 }
 
 Game::~Game()

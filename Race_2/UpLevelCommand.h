@@ -7,7 +7,7 @@ class UpLevelCommand:
 	public Command
 {
 public:
-	UpLevelCommand(Road& road, int _difficult);
+	UpLevelCommand(RoadCommand& _roadCommand, int _difficult);
 
 	void Execute();
 
