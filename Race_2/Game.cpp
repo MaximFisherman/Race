@@ -228,7 +228,7 @@ void Game::choiceSizeRoad(Control* control)
 		case 3:
 			control->startSaveGame();
 			break;
-	}	
+		};
 }
 
 Game::~Game()
