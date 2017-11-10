@@ -8,7 +8,7 @@ class CalculateState :
 	public State
 {
 public:
-	CalculateState(const Statistic& statistic);
+	CalculateState(Statistic* _statistic);
 
 	bool View();
 	bool Clear();
@@ -16,7 +16,7 @@ public:
 	~CalculateState();
 
 private: 
-	Statistic statistic;
+	Statistic* statistic;
 };
 
 #endif

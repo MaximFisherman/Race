@@ -14,9 +14,14 @@ void Statistic::setView(State* _state)
 	this->state = _state; 
 }
 
-int Statistic::getDistance()
+double Statistic::getDistance()
 {
 	return distance;
+}
+
+int Statistic::getTime()
+{
+	return timeGame;
 }
 
 int Statistic::convertToMinutes(int time)

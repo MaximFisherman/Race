@@ -2,7 +2,7 @@
 #include "CalculateState.h"
 
 
-CalculateState::CalculateState(const Statistic& _statistic)
+CalculateState::CalculateState(Statistic* _statistic)
 {
 	statistic = _statistic;
 }
@@ -19,4 +19,5 @@ bool CalculateState::Clear()
 
 CalculateState::~CalculateState()
 {
+	delete statistic;
 }

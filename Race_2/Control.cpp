@@ -7,9 +7,11 @@
 #include "RightCommand.h"
 #include "UpLevelCommand.h"
 #include "ViewRoadCommand.h"
+#include "SaveGameCommand.h"
 #include "CheckFailCommand.h"
 #include "StartGameCommand.h"
 #include "ClearRoadCommand.h"
+#include "StartSaveGameCommand.h"
 #include "SetBloksOnRoadCommand.h"
 
 Control::Control()
@@ -77,6 +79,18 @@ bool Control::isFail(global::CAR_CONTROL carControll)
 {
 	CheckFailCommand checkFailCommand(roadCommand, carControll);
 	return checkFailCommand.isFail(carControll);
+}
+
+void Control::saveGame(Statistic* statistic)
+{
+	command = new SaveGameCommand(roadCommand, statistic);
+	command->Execute();
+}
+
+void Control::startSaveGame()
+{
+	command = new StartSaveGameCommand(roadCommand);
+	command->Execute();
 }
 
 Control::~Control()

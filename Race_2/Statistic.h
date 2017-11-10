@@ -17,7 +17,8 @@ public:
 	void setTime(int startTime);
 
 	int getSpeed();
-	int getDistance();
+	int getTime();
+	double getDistance();
 
 	int convertToMinutes(int time);
 	int convertToHour(int time);

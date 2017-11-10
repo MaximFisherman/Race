@@ -307,6 +307,83 @@ void RoadCommand::viewRoad()
 	}
 }
 
+void RoadCommand::saveGame(Statistic* statistic)
+{
+	ofstream outRoad("C:/Users/Maks_/Documents/Visual Studio 2015/Projects/Race/Release/RaceSave.txt");
+
+	for (int i = 0; i < HEIGHT_ROAD; i++)
+	{
+		for (int j = 0; j < WIDTH_ROAD; j++)
+		{
+			if (roadPlayer[i][j] == ' ')
+			{
+				roadPlayer[i][j] = '*';
+			}
+			outRoad << roadPlayer[i][j];
+		}
+		outRoad << '\n';
+	}
+
+	outRoad.close();
+
+	for (int i = 0; i < HEIGHT_ROAD; i++)
+	{
+		for (int j = 0; j < WIDTH_ROAD; j++)
+		{
+			if (roadPlayer[i][j] == '*')
+			{
+				roadPlayer[i][j] = ' ';
+			}
+		}
+	}
+
+	ofstream outStatistic("C:/Users/Maks_/Documents/Visual Studio 2015/Projects/Race/Release/StatisticSave.txt");
+	
+	outStatistic << statistic->getDistance() << "\n";
+	outStatistic << statistic->getTime();
+
+	outStatistic.close();
+}
+
+void RoadCommand::startSaveGame()
+{
+	string s; 
+	string sTemp; 
+	ifstream file("C:/Users/Maks_/Documents/Visual Studio 2015/Projects/Race/Release/RaceSave.txt"); 
+	
+	int width = 0;
+	int height = 0;
+
+	while (getline(file, s)) { 
+		sTemp += s;
+		width = s.size();
+		height++;
+	}
+
+	cout << sTemp << endl;
+	setSizeRoad(height, width);
+	initializationRoad();
+
+	cout << "asd "<<height << endl;
+	cout << width<<endl;
+	system("pause");
+
+	int count = 0;
+	for (int i = 0; i < width; i++)
+	{
+		for (int j = 0; j < height; j++)
+		{
+			roadPlayer[i][j] = sTemp[count];
+
+			if (roadPlayer[i][j] == '*')
+				roadPlayer[i][j] = ' ';
+			count++;
+		}
+		count = 0;
+	}
+	file.close(); // обязательно закрываем файл что бы не повредить его
+}
+
 RoadCommand::~RoadCommand()
 {
 }

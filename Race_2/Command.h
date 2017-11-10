@@ -6,9 +6,9 @@
 class Command
 {
 protected:
-	Command(RoadCommand& road);
 	RoadCommand& roadCommand;
 public:
+	Command(RoadCommand& road);
 	virtual ~Command();
 	virtual void Execute() = 0;
 };

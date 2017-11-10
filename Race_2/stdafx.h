@@ -8,6 +8,7 @@
 #include "targetver.h"
 
 #include <tchar.h>
+#include <Windows.h>
 #include <list>
 #include <iostream>
 #include <stdlib.h>
@@ -18,10 +19,11 @@
 #include <future>
 #include <thread>
 #include <chrono>
-#include <Windows.h>
+
 #include <memory>
 #include <vector>
 #include <random>
+#include <fstream>
 #include "GlobalVariables.h"
 
 

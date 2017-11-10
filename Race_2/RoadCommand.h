@@ -1,5 +1,8 @@
-#pragma once
+#ifndef __ROAD_COMMAND_H__
+#define __ROAD_COMMAND_H__
+
 #include "Road.h"
+#include "Statistic.h"
 
 class RoadCommand :
 	public Road
@@ -22,6 +25,9 @@ public:
 
 	bool isFail(global::CAR_CONTROL carControll);
 
+	void saveGame(Statistic* statistic);
+	void startSaveGame();
 	~RoadCommand();
 };
 
+#endif

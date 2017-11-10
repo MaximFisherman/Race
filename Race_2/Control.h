@@ -5,9 +5,7 @@
 
 class Control
 {
-private:
-	RoadCommand roadCommand;
-	Command* command;
+
 public:
 	Control();
 	void startGame(int sizeRoad);
@@ -25,7 +23,14 @@ public:
 	void viewRoad();
 
 	bool isFail(global::CAR_CONTROL carControll);
+
+	void saveGame(Statistic* statistic);
+	void startSaveGame();
 	~Control();
+
+protected:
+	RoadCommand roadCommand;
+	Command* command;
 };
 
 #endif

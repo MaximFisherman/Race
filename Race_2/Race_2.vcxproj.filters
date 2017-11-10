@@ -81,10 +81,13 @@
     <ClInclude Include="CloseState.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Options.h">
+    <ClInclude Include="RoadCommand.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="RoadCommand.h">
+    <ClInclude Include="SaveGameCommand.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="StartSaveGameCommand.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
@@ -149,10 +152,13 @@
     <ClCompile Include="CloseState.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
+    <ClCompile Include="RoadCommand.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="RoadCommand.cpp">
+    <ClCompile Include="SaveGameCommand.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="StartSaveGameCommand.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

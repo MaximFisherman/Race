@@ -5,19 +5,21 @@
 #include "Control.h"
 #include "Statistic.h"
 #include "Road.h"
-#include "Options.h"
 
 class Game
 {
 private: 
-	Control control;
-	Statistic statistic;
-	Options options;
+	Control* control;
+	Statistic* statistic;
+	State* state;
 public:
 	Game();
+	void initObject();
 	void redrawing(int x, int y);
-	void choiceSizeRoad(Control& control);
+	void choiceSizeRoad(Control* control);
+
 	void massageGameOver();
+	void massageGameKey();
 	void Run();
 	~Game();
 };

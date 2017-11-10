@@ -8,7 +8,7 @@ class CloseState :
 	public State
 {
 public:
-	CloseState(const Statistic& _statistic);
+	CloseState(Statistic* _statistic);
 
 	bool View();
 	bool Clear();
@@ -16,7 +16,7 @@ public:
 	~CloseState();
 
 private:
-	Statistic statistic;
+	Statistic* statistic;
 };
 
 #endif
