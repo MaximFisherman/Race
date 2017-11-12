@@ -24,8 +24,9 @@ public:
 
 	bool isFail(global::CAR_CONTROL carControll);
 
-	void saveGame(Statistic* statistic);
-	void startSaveGame();
+	bool saveGame(Statistic* statistic);
+	bool startSaveGame();
+
 	~Control();
 
 protected:

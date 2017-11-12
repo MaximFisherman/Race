@@ -230,11 +230,11 @@ bool RoadCommand::isFail(global::CAR_CONTROL carControll)
 			}
 			break;
 		case global::CAR_CONTROL::NONE:
-			if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == global::SYMB_BLOCK)
+			if (coordinatePlayerY != 3 && roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
-			if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == global::SYMB_BLOCK)
+			if (coordinatePlayerY != 0 && roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
@@ -307,46 +307,73 @@ void RoadCommand::viewRoad()
 	}
 }
 
-void RoadCommand::saveGame(Statistic* statistic)
+bool RoadCommand::saveGame(Statistic* statistic)
 {
-	ofstream outRoad("C:/Users/Maks_/Documents/Visual Studio 2015/Projects/Race/Release/RaceSave.txt");
+	bool flag = false;
 
-	for (int i = 0; i < HEIGHT_ROAD; i++)
-	{
-		for (int j = 0; j < WIDTH_ROAD; j++)
+	try {
+		ofstream outRoad("RaceSave.txt");
+
+		for (int i = 0; i < HEIGHT_ROAD; i++)
 		{
-			if (roadPlayer[i][j] == ' ')
+			for (int j = 0; j < WIDTH_ROAD; j++)
 			{
-				roadPlayer[i][j] = '*';
+				if (roadPlayer[i][j] == ' ')
+				{
+					roadPlayer[i][j] = '*';
+				}
+				outRoad << roadPlayer[i][j];
 			}
-			outRoad << roadPlayer[i][j];
+			outRoad << '\n';
 		}
-		outRoad << '\n';
+
+		if (outRoad.bad())    // bad() function will check for badbit
+		{
+			throw 1;
+		}
+
+		outRoad.close();
+
+		for (int i = 0; i < HEIGHT_ROAD; i++)
+		{
+			for (int j = 0; j < WIDTH_ROAD; j++)
+			{
+				if (roadPlayer[i][j] == '*')
+				{
+					roadPlayer[i][j] = ' ';
+				}
+			}
+		}
+
+		ofstream outStatistic("StatisticSave.txt");
+
+		outStatistic << statistic->getDistance() << "\n";
+		outStatistic << statistic->getTime();
+
+		if (outStatistic.bad())    // bad() function will check for badbit
+		{
+			throw 2;
+		}
+
+		outStatistic.close();
+		flag = true;
+	}
+	catch (int& error){
+		system("cls");
+		cout << "Error writing in file, error code:" << error;
+		system("pause");
+		system("cls");
+
+		flag = false;
 	}
 
-	outRoad.close();
-
-	for (int i = 0; i < HEIGHT_ROAD; i++)
-	{
-		for (int j = 0; j < WIDTH_ROAD; j++)
-		{
-			if (roadPlayer[i][j] == '*')
-			{
-				roadPlayer[i][j] = ' ';
-			}
-		}
-	}
-
-	ofstream outStatistic("StatisticSave.txt");
-	
-	outStatistic << statistic->getDistance() << "\n";
-	outStatistic << statistic->getTime();
-
-	outStatistic.close();
+	return flag;
 }
 
-void RoadCommand::startSaveGame()
+bool RoadCommand::startSaveGame() 
 {
+	bool flag = false;
+
 	try {
 		string s;
 		string sTemp;
@@ -390,6 +417,7 @@ void RoadCommand::startSaveGame()
 		}
 
 		file.close();
+		flag = true;
 	}
 	catch (int& error) {
 		ofstream outLogError("Log.txt");
@@ -399,9 +427,12 @@ void RoadCommand::startSaveGame()
 		system("cls");
 		cout << "you didn't have save" << endl;
 		system("pause");
-		exit(0);
+		system("cls");
+
+		flag = false;
 	}
 
+	return flag;
 }
 
 RoadCommand::~RoadCommand()

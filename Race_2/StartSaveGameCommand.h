@@ -8,7 +8,10 @@ class StartSaveGameCommand :
 {
 public:
 	StartSaveGameCommand(RoadCommand& _roadCommand);
+
+	bool isFailStartSaveGame();
 	void Execute();
+
 	~StartSaveGameCommand();
 };
 

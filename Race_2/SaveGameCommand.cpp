@@ -7,11 +7,15 @@ SaveGameCommand::SaveGameCommand(RoadCommand& _roadCommand, Statistic* _statisti
 	this->statistic = _statistic;
 }
 
-void SaveGameCommand::Execute()
+bool SaveGameCommand::isFailSave()
 {
-	roadCommand.saveGame(statistic);
+	return roadCommand.saveGame(statistic);
 }
 
+void SaveGameCommand::Execute()
+{
+	
+}
 
 SaveGameCommand::~SaveGameCommand()
 {

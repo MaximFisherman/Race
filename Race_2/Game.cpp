@@ -149,6 +149,20 @@ void Game::Run()
 			control->turnUp();
 		}
 
+
+		statistic->setTime(startTime);
+		statistic->viewStatistic(statistic->isView());
+
+		control->setBlockOnRoad();
+		control->viewRoad();
+
+		// View game key 
+		if (countPressTab % 2 == 0)
+		{
+			massageGameKey();
+		}
+
+
 		// Change state view statistic
 		if (GetAsyncKeyState(VK_TAB))
 		{
@@ -169,15 +183,8 @@ void Game::Run()
 		{
 			break;
 		}
-
 	
-		statistic->setTime(startTime);
-		statistic->viewStatistic(statistic->isView());
 
-		control->setBlockOnRoad();
-		control->viewRoad();
-		massageGameKey();
-		
 		Sleep(statistic->getSpeed());
 		
 		redrawing(0, 0);
@@ -190,9 +197,6 @@ void Game::Run()
 	system("cls");
 	statistic->viewStatistic(statistic->isView());
 	massageGameOver();
-
-	// Clear memory.
-	delete state;
 }
 
 void Game::massageGameOver()
@@ -213,25 +217,39 @@ void Game::redrawing(int x, int y)
 
 void Game::choiceSizeRoad(Control* control)
 {
-	cout << "Choose a six-lane(press 1) or four-lane road(press 2), or start save game(press 3)" << endl;
+	int action = 0;
 
-	int action;
-	cin >> action;
+	while (true)
+	{
+		cout << "Choose a six-lane(press 1) or four-lane road(press 2), or start save game(press 3)" << endl;
+		cin >> action;
 
-	switch (action) {
-		case 1 :
-			control->startGame(global::SIX_WAY_ROAD); 
+		if(action == 1)
+		{ 
+			control->startGame(global::SIX_WAY_ROAD);
 			break;
-		case 2 : 
+		}
+			
+		if (action == 2)
+		{
 			control->startGame(global::FOUR_WAY_ROAD);
 			break;
-		case 3:
-			control->startSaveGame();
-			break;
-		};
+		}
+
+		if (action == 3)
+		{
+			if (control->startSaveGame() == true)
+			{
+				break;
+			}
+		}
+	}
 }
 
 Game::~Game()
 {
-	
+	// Clear memory.
+	delete state;
+	delete control;
+	delete statistic;
 }

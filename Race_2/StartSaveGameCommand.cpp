@@ -6,9 +6,14 @@ StartSaveGameCommand::StartSaveGameCommand(RoadCommand& _roadCommand) : Command(
 {
 }
 
+bool StartSaveGameCommand::isFailStartSaveGame()
+{
+	return roadCommand.startSaveGame();;
+}
+
 void StartSaveGameCommand::Execute()
 {
-	roadCommand.startSaveGame();
+	
 }
 
 StartSaveGameCommand::~StartSaveGameCommand()
