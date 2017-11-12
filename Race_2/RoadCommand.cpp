@@ -337,7 +337,7 @@ void RoadCommand::saveGame(Statistic* statistic)
 		}
 	}
 
-	ofstream outStatistic("C:/Users/Maks_/Documents/Visual Studio 2015/Projects/Race/Release/StatisticSave.txt");
+	ofstream outStatistic("StatisticSave.txt");
 	
 	outStatistic << statistic->getDistance() << "\n";
 	outStatistic << statistic->getTime();
@@ -350,7 +350,7 @@ void RoadCommand::startSaveGame()
 	try {
 		string s;
 		string sTemp;
-		ifstream file("C:/Users/Maks_/Documents/Visual Studio 2015/Projects/Race/Release/RaceSave.txt");
+		ifstream file("RaceSave.txt");
 
 		if (!file.is_open())
 		{
@@ -392,7 +392,14 @@ void RoadCommand::startSaveGame()
 		file.close();
 	}
 	catch (int& error) {
-		cerr << "Error open file, error code:"<< error;
+		ofstream outLogError("Log.txt");
+		outLogError << "Error open file, error code:" << error << "\n";
+		outLogError.close();
+
+		system("cls");
+		cout << "you didn't have save" << endl;
+		system("pause");
+		exit(0);
 	}
 
 }
