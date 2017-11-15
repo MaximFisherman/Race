@@ -19,11 +19,12 @@
 #include <future>
 #include <thread>
 #include <chrono>
-
 #include <memory>
 #include <vector>
 #include <random>
+#include <functional>
 #include <fstream>
+
 #include "GlobalVariables.h"
 
 

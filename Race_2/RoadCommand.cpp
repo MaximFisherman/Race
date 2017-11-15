@@ -13,8 +13,8 @@ void RoadCommand::turnLeft()
 
 	if (coordinatePlayerX - 1 != -1)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
-		roadPlayer[coordinatePlayerY][coordinatePlayerX - 1] = global::SYMB_CAR;
+		roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + coordinatePlayerX - 1] = global::SYMB_CAR;
 	}
 }
 
@@ -24,8 +24,8 @@ void RoadCommand::turnRight()
 
 	if (coordinatePlayerX + 1 != WIDTH_ROAD)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
-		roadPlayer[coordinatePlayerY][coordinatePlayerX + 1] = global::SYMB_CAR;
+		roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + coordinatePlayerX + 1] = global::SYMB_CAR;
 	}
 }
 
@@ -35,8 +35,8 @@ void RoadCommand::turnDown()
 
 	if (coordinatePlayerY + 1 != HEIGHT_ROAD - 2)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
-		roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] = global::SYMB_CAR;
+		roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[((coordinatePlayerY + 1) - 1) * WIDTH_ROAD + coordinatePlayerX] = global::SYMB_CAR;
 	}
 }
 
@@ -44,10 +44,10 @@ void RoadCommand::turnUp()
 {
 	searchCoordinatePlayer();
 
-	if (coordinatePlayerY - 1 != 1)
+	if (coordinatePlayerY - 1 != 2)
 	{
-		roadPlayer[coordinatePlayerY][coordinatePlayerX] = global::SYMB_ROAD;
-		roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] = global::SYMB_CAR;
+		roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + coordinatePlayerX] = global::SYMB_ROAD;
+		roadPlayer[((coordinatePlayerY - 1) - 1) * WIDTH_ROAD + coordinatePlayerX] = global::SYMB_CAR;
 	}
 }
 
@@ -81,16 +81,16 @@ void RoadCommand::setBlockOppositeLine()
 	{
 		if (randomPositionBlock == i)
 		{
-			roadPlayer[0][i] = global::SYMB_BLOCK;
+			roadPlayer[(0) * WIDTH_ROAD + i] = global::SYMB_BLOCK;
 		}
 	}
 
 	// Search for a block symbol in a two-dimensional matrix.
-	for (int i = 0; i < HEIGHT_ROAD; i++)
+	for (int i = 1; i < HEIGHT_ROAD; i++)
 	{
 		for (int j = 0; j < WIDTH_ROAD / 2; j++)
 		{
-			if (roadPlayer[i][j] == global::SYMB_BLOCK)
+			if (roadPlayer[(i - 1) * WIDTH_ROAD + j] == global::SYMB_BLOCK)
 			{
 				coordinateBlocksX.push_back(j);
 				coordinateBlocksY.push_back(i);
@@ -103,11 +103,11 @@ void RoadCommand::setBlockOppositeLine()
 	{
 		if (coordinateBlocksY[i] != HEIGHT_ROAD - 1)
 		{
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
-			roadPlayer[coordinateBlocksY[i] + 1][coordinateBlocksX[i]] = global::SYMB_BLOCK;
+			roadPlayer[(coordinateBlocksY[i] - 1) * WIDTH_ROAD + coordinateBlocksX[i]] = global::SYMB_ROAD;
+			roadPlayer[((coordinateBlocksY[i] + 1) - 1) * WIDTH_ROAD + coordinateBlocksX[i]] = global::SYMB_BLOCK;
 		}
 		else {
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
+			roadPlayer[(coordinateBlocksY[i] - 1) * WIDTH_ROAD + coordinateBlocksX[i]] = global::SYMB_ROAD;
 		}
 	}
 
@@ -144,16 +144,17 @@ void RoadCommand::setBlockRoadLine()
 	{
 		if (randomPositionBlock == i)
 		{
-			roadPlayer[HEIGHT_ROAD - 1][i] = global::SYMB_BLOCK;
+			roadPlayer[((HEIGHT_ROAD - 1) - 1) * WIDTH_ROAD + i] = global::SYMB_BLOCK;
 		}
 	}
 
+
 	// Search for a block symbol in a two-dimensional matrix.
-	for (int i = 0; i < HEIGHT_ROAD; i++)
+	for (int i = 1; i < HEIGHT_ROAD; i++)
 	{
 		for (int j = WIDTH_ROAD / 2; j < WIDTH_ROAD; j++)
 		{
-			if (roadPlayer[i][j] == global::SYMB_BLOCK)
+			if (roadPlayer[(i - 1) * WIDTH_ROAD + j] == global::SYMB_BLOCK)
 			{
 				coordinateBlocksX.push_back(j);
 				coordinateBlocksY.push_back(i);
@@ -164,13 +165,13 @@ void RoadCommand::setBlockRoadLine()
 	// Moving blocks.
 	for (int i = 0; i < coordinateBlocksX.size(); i++)
 	{
-		if (coordinateBlocksY[i] != 0)
+		if (coordinateBlocksY[i] != 1)
 		{
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
-			roadPlayer[coordinateBlocksY[i] - 1][coordinateBlocksX[i]] = global::SYMB_BLOCK;
+			roadPlayer[(coordinateBlocksY[i] - 1) * WIDTH_ROAD + coordinateBlocksX[i]] = global::SYMB_ROAD;
+			roadPlayer[((coordinateBlocksY[i] - 1) - 1) * WIDTH_ROAD + coordinateBlocksX[i]] = global::SYMB_BLOCK;
 		}
 		else {
-			roadPlayer[coordinateBlocksY[i]][coordinateBlocksX[i]] = global::SYMB_ROAD;
+			roadPlayer[(coordinateBlocksY[i] - 1) * WIDTH_ROAD + coordinateBlocksX[i]] = global::SYMB_ROAD;
 		}
 	}
 	coordinateBlocksX.clear();
@@ -182,17 +183,17 @@ void RoadCommand::clearRoad()
 	coordinateBlocksX.clear();
 	coordinateBlocksY.clear();
 
-	for (int i = 0; i < HEIGHT_ROAD; i++)
+	for (int i = 1; i < HEIGHT_ROAD; i++)
 	{
 		for (int j = 0; j < WIDTH_ROAD; j++)
 		{
 
 			if (i == ((HEIGHT_ROAD / 2) + 2) && j == (WIDTH_ROAD / 2))
 			{
-				roadPlayer[i][j] = global::SYMB_CAR;
+				roadPlayer[(i - 1) * WIDTH_ROAD + j] = global::SYMB_CAR;
 			}
 			else {
-				roadPlayer[i][j] = global::SYMB_ROAD;
+				roadPlayer[(i - 1) * WIDTH_ROAD + j] = global::SYMB_ROAD;
 			}
 		}
 	}
@@ -206,35 +207,35 @@ bool RoadCommand::isFail(global::CAR_CONTROL carControll)
 
 	switch (carControll) {
 		case global::CAR_CONTROL::RIGHT:
-			if (roadPlayer[coordinatePlayerY][coordinatePlayerX + 1] == global::SYMB_BLOCK)
+			if (roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + (coordinatePlayerX + 1)] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
 		case global::CAR_CONTROL::LEFT:
-			if (roadPlayer[coordinatePlayerY][coordinatePlayerX - 1] == global::SYMB_BLOCK)
+			if (roadPlayer[(coordinatePlayerY - 1) * WIDTH_ROAD + (coordinatePlayerX - 1)] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
 		case global::CAR_CONTROL::UP:
-			if (roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == global::SYMB_BLOCK)
+			if (roadPlayer[((coordinatePlayerY - 1) - 1) * WIDTH_ROAD + coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
 		case global::CAR_CONTROL::DOWN:
-			if (roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == global::SYMB_BLOCK)
+			if (roadPlayer[((coordinatePlayerY + 1) - 1) * WIDTH_ROAD + coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
 			break;
 		case global::CAR_CONTROL::NONE:
-			if (coordinatePlayerY != 3 && roadPlayer[coordinatePlayerY + 1][coordinatePlayerX] == global::SYMB_BLOCK)
+			if (coordinatePlayerY != 3 && roadPlayer[((coordinatePlayerY + 1) - 1) * WIDTH_ROAD + coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
-			if (coordinatePlayerY != 0 && roadPlayer[coordinatePlayerY - 1][coordinatePlayerX] == global::SYMB_BLOCK)
+			if (coordinatePlayerY != 0 && roadPlayer[((coordinatePlayerY - 1) - 1) * WIDTH_ROAD + coordinatePlayerX] == global::SYMB_BLOCK)
 			{
 				flag = true;
 			}
@@ -263,7 +264,7 @@ void RoadCommand::viewRoad()
 	int DisplayMarkup = 0;
 	int ReversDisplay = rand() % 2 + 1;
 
-	for (int i = 0; i < HEIGHT_ROAD; i++)
+	for (int i = 1; i < HEIGHT_ROAD; i++)
 	{
 		cout << "|";
 		if (i & 1 == 1)
@@ -275,29 +276,29 @@ void RoadCommand::viewRoad()
 		{
 			if (j == WIDTH_ROAD - 1)
 			{
-				cout << roadPlayer[i][j];
+				cout << roadPlayer[(i - 1) * WIDTH_ROAD + j];
 			}
 			else {
 				if (ReversDisplay == 1)
 				{
 					if (DisplayMarkup == 1)
 					{
-						cout << roadPlayer[i][j] << " ";
+						cout << roadPlayer[(i - 1) * WIDTH_ROAD + j] << " ";
 					}
 					if (DisplayMarkup == 0)
 					{
-						cout << roadPlayer[i][j] << (char)58;
+						cout << roadPlayer[(i - 1) * WIDTH_ROAD + j] << (char)58;
 					}
 				}
 				if (ReversDisplay == 2)
 				{
 					if (DisplayMarkup == 1)
 					{
-						cout << roadPlayer[i][j] << (char)58;
+						cout << roadPlayer[(i - 1) * WIDTH_ROAD + j] << (char)58;
 					}
 					if (DisplayMarkup == 0)
 					{
-						cout << roadPlayer[i][j] << " ";
+						cout << roadPlayer[(i - 1) * WIDTH_ROAD + j] << " ";
 					}
 				}
 			}
@@ -314,17 +315,16 @@ bool RoadCommand::saveGame(Statistic* statistic)
 	try {
 		ofstream outRoad("RaceSave.txt");
 
-		for (int i = 0; i < HEIGHT_ROAD; i++)
+		for (int i = 1; i < HEIGHT_ROAD; i++)
 		{
 			for (int j = 0; j < WIDTH_ROAD; j++)
 			{
-				if (roadPlayer[i][j] == ' ')
+				if (roadPlayer[(i - 1) * WIDTH_ROAD + j] == ' ')
 				{
-					roadPlayer[i][j] = '*';
+					roadPlayer[(i - 1) * WIDTH_ROAD + j] = '*';
 				}
-				outRoad << roadPlayer[i][j];
+				outRoad << roadPlayer[(i - 1) * WIDTH_ROAD + j];
 			}
-			outRoad << '\n';
 		}
 
 		if (outRoad.bad())    // bad() function will check for badbit
@@ -334,13 +334,13 @@ bool RoadCommand::saveGame(Statistic* statistic)
 
 		outRoad.close();
 
-		for (int i = 0; i < HEIGHT_ROAD; i++)
+		for (int i = 1; i < HEIGHT_ROAD; i++)
 		{
 			for (int j = 0; j < WIDTH_ROAD; j++)
 			{
-				if (roadPlayer[i][j] == '*')
+				if (roadPlayer[(i - 1) * WIDTH_ROAD + j] == '*')
 				{
-					roadPlayer[i][j] = ' ';
+					roadPlayer[(i - 1) * WIDTH_ROAD + j] = ' ';
 				}
 			}
 		}
@@ -390,8 +390,17 @@ bool RoadCommand::startSaveGame()
 
 		while (getline(file, s)) {
 			sTemp += s;
-			width = s.size();
 			height++;
+		}
+
+		if (height / global::SIX_WAY_ROAD == 0)
+		{
+			width = 6;
+		}
+
+		if (height / global::FOUR_WAY_ROAD == 0)
+		{
+			width = 4;
 		}
 
 		cout << sTemp << endl;
@@ -403,14 +412,14 @@ bool RoadCommand::startSaveGame()
 		system("pause");
 
 		int count = 0;
-		for (int i = 0; i < width; i++)
+		for (int i = 1; i < width; i++)
 		{
 			for (int j = 0; j < height; j++)
 			{
-				roadPlayer[i][j] = sTemp[count];
+				roadPlayer[(i - 1) * WIDTH_ROAD + j] = sTemp[count];
 
-				if (roadPlayer[i][j] == '*')
-					roadPlayer[i][j] = ' ';
+				if (roadPlayer[(i - 1) * WIDTH_ROAD + j] == '*')
+					roadPlayer[(i - 1) * WIDTH_ROAD + j] = ' ';
 				count++;
 			}
 			count = 0;
@@ -421,6 +430,7 @@ bool RoadCommand::startSaveGame()
 	}
 	catch (int& error) {
 		ofstream outLogError("Log.txt");
+
 		outLogError << "Error open file, error code:" << error << "\n";
 		outLogError.close();
 

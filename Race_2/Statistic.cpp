@@ -118,6 +118,7 @@ bool Statistic::isView()
 
 	if(state->Clear() == true)
 		return false;
+	return 0;
 }
 
 Statistic::~Statistic()

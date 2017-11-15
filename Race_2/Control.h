@@ -27,6 +27,8 @@ public:
 	bool saveGame(Statistic* statistic);
 	bool startSaveGame();
 
+
+
 	~Control();
 
 protected:

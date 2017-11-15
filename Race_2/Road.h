@@ -27,7 +27,7 @@ protected:
 	int WIDTH_ROAD;
 	int HEIGHT_ROAD;
 
-	char** roadPlayer;
+	vector<char> roadPlayer;
 };
 
 #endif

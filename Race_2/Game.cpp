@@ -92,7 +92,7 @@ void Game::Run()
 			system("cls");
 			cout << "Game saving" << endl;
 			system("pause");
-
+			int x;
 			control->saveGame(statistic);
 			system("cls");
 		}
