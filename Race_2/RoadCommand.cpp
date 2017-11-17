@@ -332,6 +332,9 @@ bool RoadCommand::saveGame(Statistic* statistic)
 			throw 1;
 		}
 
+		outRoad << "\n" << WIDTH_ROAD << "\n";
+		outRoad << HEIGHT_ROAD << "\n";
+
 		outRoad.close();
 
 		for (int i = 1; i < HEIGHT_ROAD; i++)
@@ -375,7 +378,6 @@ bool RoadCommand::startSaveGame()
 	bool flag = false;
 
 	try {
-		string s;
 		string sTemp;
 		ifstream file("RaceSave.txt");
 
@@ -388,20 +390,33 @@ bool RoadCommand::startSaveGame()
 		int width = 0;
 		int height = 0;
 
-		while (getline(file, s)) {
-			sTemp += s;
-			height++;
+		int countLine = 0;
+		while (!file.eof()) {
+			string s;
+
+			if (countLine == 0)
+			{
+				getline(file, s);
+				sTemp = s;
+			}
+				
+			if (countLine == 1)
+			{
+				getline(file, s);
+				width = stoi(s);
+			}
+				
+			if (countLine == 2)
+			{
+				getline(file, s);
+				height = stoi(s);
+				break;
+			}
+			
+			countLine++;
 		}
 
-		if (height / global::SIX_WAY_ROAD == 0)
-		{
-			width = 6;
-		}
-
-		if (height / global::FOUR_WAY_ROAD == 0)
-		{
-			width = 4;
-		}
+	
 
 		cout << sTemp << endl;
 		setSizeRoad(height, width);

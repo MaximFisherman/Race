@@ -170,10 +170,10 @@ void Game::Run()
 			
 			if (countPressTab & 1 == 1) 
 			{
-				state = new CloseState(statistic);
+				//state = new CloseState(statistic);
 			}
 			else {
-				state = new CalculateState(statistic);
+				//state = new CalculateState(statistic);
 			}
 
 			statistic->setView(state);

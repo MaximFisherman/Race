@@ -9,9 +9,9 @@ Statistic::Statistic()
 	distance = 0;
 }
 
-void Statistic::setView(State* _state)
+void Statistic::setView(const State* _state)
 {
-	this->state = _state; 
+	this->state = const_cast<State*> (_state); 
 }
 
 double Statistic::getDistance()

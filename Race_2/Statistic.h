@@ -10,7 +10,7 @@ class Statistic
 {
 public:
 	Statistic();
-	void setView(State* state);
+	void setView(const State* state);
 
 	void setSpeed(global::CAR_CONTROL carControll);
 	void setDistance();
