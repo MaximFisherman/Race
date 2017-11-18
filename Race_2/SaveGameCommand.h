@@ -6,7 +6,7 @@ class SaveGameCommand :
 	public Command
 {
 public:
-	SaveGameCommand(RoadCommand& _roadCommand, Statistic* _statistic);
+	SaveGameCommand(RoadCommand& _roadCommand, const Statistic* _statistic);
 	
 	bool isFailSave();
 	void Execute();

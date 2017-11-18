@@ -81,7 +81,7 @@ bool Control::isFail(global::CAR_CONTROL carControll)
 	return checkFailCommand.isFail(carControll);
 }
 
-bool Control::saveGame(Statistic* statistic)
+bool Control::saveGame(const Statistic* statistic)
 {
 	SaveGameCommand saveGameCommand(roadCommand, statistic);
 	return saveGameCommand.isFailSave();

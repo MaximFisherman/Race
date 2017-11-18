@@ -113,12 +113,13 @@ void Statistic::viewStatistic(bool isView)
 
 bool Statistic::isView()
 {
-	if(state->View() == true)
+	if (state->View() == true && state->Clear() == false)
+	{
 		return true;
-
-	if(state->Clear() == true)
+	}
+	else{ 
 		return false;
-	return 0;
+	}
 }
 
 Statistic::~Statistic()

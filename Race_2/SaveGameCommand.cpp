@@ -2,9 +2,9 @@
 #include "SaveGameCommand.h"
 
 
-SaveGameCommand::SaveGameCommand(RoadCommand& _roadCommand, Statistic* _statistic) : Command(_roadCommand)
+SaveGameCommand::SaveGameCommand(RoadCommand& _roadCommand, const Statistic* _statistic) : Command(_roadCommand)
 {
-	this->statistic = _statistic;
+	this->statistic = const_cast<Statistic*>(_statistic);
 }
 
 bool SaveGameCommand::isFailSave()

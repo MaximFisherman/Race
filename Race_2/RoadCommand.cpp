@@ -379,6 +379,12 @@ bool RoadCommand::startSaveGame()
 
 	try {
 		string sTemp;
+
+		int width = 0;
+		int height = 0;
+		double distance = 0;
+		int timeGame = 0;
+
 		ifstream file("RaceSave.txt");
 
 		if (!file.is_open())
@@ -387,8 +393,7 @@ bool RoadCommand::startSaveGame()
 			throw 11;
 		}
 
-		int width = 0;
-		int height = 0;
+
 
 		int countLine = 0;
 		while (!file.eof()) {
@@ -416,15 +421,8 @@ bool RoadCommand::startSaveGame()
 			countLine++;
 		}
 
-	
-
-		cout << sTemp << endl;
 		setSizeRoad(height, width);
 		initializationRoad();
-
-		cout << "asd " << height << endl;
-		cout << width << endl;
-		system("pause");
 
 		int count = 0;
 		for (int i = 1; i < width; i++)
@@ -441,6 +439,36 @@ bool RoadCommand::startSaveGame()
 		}
 
 		file.close();
+
+
+		ifstream fileStatistic("StatisticSave.txt");
+
+		if (!fileStatistic.is_open())
+		{
+			// The file doesn't exist.
+			throw 12;
+		}
+
+	    countLine = 0;
+		while (!fileStatistic.eof()) {
+			string s;
+
+			if (countLine == 0)
+			{
+				getline(fileStatistic, s);
+				distance = stod(s);
+				countLine++;
+			}
+
+			if (countLine == 1)
+			{
+				getline(fileStatistic, s);
+				timeGame = stoi(s);
+				break;
+			}
+			
+		}
+		
 		flag = true;
 	}
 	catch (int& error) {
