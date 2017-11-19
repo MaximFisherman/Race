@@ -2,7 +2,7 @@
 #define __STATISTIC_H__
 
 #include "stdafx.h"
-#include "State.h"
+#include "StateView.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ class Statistic
 {
 public:
 	Statistic();
-	void setView(const State* state);
+	void setView(const StateView& state);
 
 	void setSpeed(global::CAR_CONTROL carControll);
 	void setDistance();
@@ -31,10 +31,11 @@ public:
 	~Statistic();
 
 private:
-	State* state;
+	StateView* stateView;
+
 	int timeGame;
-	double distance;
 	int speed;
+	double distance;
 };
 
 #endif

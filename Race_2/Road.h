@@ -2,7 +2,7 @@
 #define __ROAD_H__
 
 #include "stdafx.h"
-
+#include "StateRoad.h"
 using namespace std;
 
 class Road
@@ -13,9 +13,14 @@ public:
 	void initializationRoad();
 	void searchCoordinatePlayer();
 
+	void setSizeRoad(const StateRoad& stateRoad);
+	void sizeRoad();
+
 	~Road();
 
 protected:
+	StateRoad* stateRoad;
+
 	vector<int> coordinateBlocksX;
 	vector<int> coordinateBlocksY;
 

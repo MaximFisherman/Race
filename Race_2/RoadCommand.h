@@ -18,7 +18,6 @@ public:
 	void setBlockOppositeLine();
 	void setBlockRoadLine();
 	void setDifficult(int _difficult);
-	void setSizeRoad(int _height, int _width);
 
 	void viewRoad();
 	void clearRoad();

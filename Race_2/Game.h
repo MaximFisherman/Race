@@ -2,21 +2,22 @@
 #define __GAME_H__
 
 #include "stdafx.h"
-#include "Control.h"
+#include "RoadCommand.h"
 #include "Statistic.h"
 #include "Road.h"
 
 class Game
 {
 private: 
-	Control* control;
+	RoadCommand* roadCommand;
 	Statistic* statistic;
-	State* state;
+	StateView* stateView;
+	StateRoad* stateRoad;
 public:
 	Game();
 	void initObject();
 	void redrawing(int x, int y);
-	void choiceSizeRoad(Control* control);
+	void choiceSizeRoad(RoadCommand& roadCommand);
 
 	void massageGameOver();
 	void massageGameKey();

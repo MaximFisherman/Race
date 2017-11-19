@@ -33,49 +33,7 @@
     <ClInclude Include="GlobalVariables.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Command.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="LeftCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="RightCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="UpCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="DownCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="SetBloksOnRoadCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewRoadCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="ClearRoadCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Statistic.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="CheckFailCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Control.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="UpLevelCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="StartGameCommand.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="CalculateState.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="CloseState.h">
@@ -84,10 +42,19 @@
     <ClInclude Include="RoadCommand.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="SaveGameCommand.h">
+    <ClInclude Include="OpenState.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="StartSaveGameCommand.h">
+    <ClInclude Include="StateView.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="StateRoad.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="FourLineState.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="SixLineState.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,52 +68,10 @@
     <ClCompile Include="Road.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Command.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="LeftCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="RightCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="UpCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="DownCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="SetBloksOnRoadCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewRoadCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="ClearRoadCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Statistic.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="CheckFailCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Race.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Control.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="UpLevelCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="StartGameCommand.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="CalculateState.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="CloseState.cpp">
@@ -155,10 +80,19 @@
     <ClCompile Include="RoadCommand.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="SaveGameCommand.cpp">
+    <ClCompile Include="OpenState.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="StartSaveGameCommand.cpp">
+    <ClCompile Include="StateView.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="StateRoad.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="FourLineState.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="SixLineState.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,14 +4,16 @@
 
 Statistic::Statistic()
 {
+	this->stateView = nullptr;
+
 	timeGame = 0;
 	speed = global::BASE_SPEED;
 	distance = 0;
 }
 
-void Statistic::setView(const State* _state)
+void Statistic::setView(const StateView& _state)
 {
-	this->state = const_cast<State*> (_state); 
+	this->stateView = &const_cast<StateView&>(_state);
 }
 
 double Statistic::getDistance()
@@ -96,7 +98,7 @@ int Statistic::convertSpeed(int speed)
 
 void Statistic::viewStatistic(bool isView)
 {
-	if (isView)
+	if (isView == true)
 	{
 		setDistance();
 
@@ -113,15 +115,17 @@ void Statistic::viewStatistic(bool isView)
 
 bool Statistic::isView()
 {
-	if (state->View() == true && state->Clear() == false)
+	if (stateView->View() == true/* && stateView->Clear()*/)
 	{
 		return true;
 	}
 	else{ 
 		return false;
 	}
+	return 1;
 }
 
 Statistic::~Statistic()
 {
+	delete stateView;
 }

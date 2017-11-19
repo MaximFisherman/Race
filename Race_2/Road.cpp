@@ -40,10 +40,34 @@ void Road::searchCoordinatePlayer()
 	}
 }
 
+void Road::setSizeRoad(const StateRoad& _stateRoad)
+{
+	this->stateRoad = &const_cast<StateRoad&>(_stateRoad);
+}
+
+void Road::sizeRoad()
+{
+	if (stateRoad->fourLineRoad() == true)
+	{
+		HEIGHT_ROAD = global::HEIGHT_ROAD;
+		WIDTH_ROAD = global::FOUR_WAY_ROAD;
+		cout << HEIGHT_ROAD;
+		system("pause");
+	}
+
+	if (stateRoad->sixLineRoad() == true)
+	{
+		HEIGHT_ROAD = global::HEIGHT_ROAD;
+		WIDTH_ROAD = global::SIX_WAY_ROAD;
+	}
+}
+
 
 Road::~Road()
 {
 	roadPlayer.clear();
 	coordinateBlocksX.clear();
 	coordinateBlocksY.clear();
+
+	delete stateRoad;
 }

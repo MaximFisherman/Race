@@ -2,9 +2,9 @@
 #include "CloseState.h"
 
 
-CloseState::CloseState(Statistic* _statistic) : statistic(_statistic)
+CloseState::CloseState(const Statistic& _statistic)
 {
-
+	statistic = &const_cast<Statistic&>(_statistic);
 }
 
 bool CloseState::View()
@@ -19,5 +19,5 @@ bool CloseState::Clear()
 
 CloseState::~CloseState()
 {
-	delete statistic;
+	
 }

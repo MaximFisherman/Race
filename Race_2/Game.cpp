@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Game.h"
-#include "CalculateState.h"
+#include "OpenState.h"
+#include "FourLineState.h"
+#include "SixLineState.h"
 #include "CloseState.h"
 
 Game::Game()
@@ -10,9 +12,10 @@ Game::Game()
 
 void Game::initObject()
 {
-	control = new Control();
+	roadCommand = new RoadCommand();
 	statistic = new Statistic();
-	state = new CalculateState(statistic);
+	stateView = new OpenState(*statistic);
+	stateRoad = nullptr;
 }
 
 void Game::massageGameKey()
@@ -25,79 +28,86 @@ void Game::massageGameKey()
 
 void Game::Run()
 {
-	initObject();
-
-	choiceSizeRoad(control);
-	statistic->setView(state);
-
+	bool isGameOver = false;
 	int count = 0;
 	int countLevel = 0;
 	int countPressTab = 0;
 	int startTime = clock();
 
-	while (true)
+	while (isGameOver != true)
 	{
+		++count;
+		// Start game 
 		if (count == 1)
 		{
-			control->UpLevel(10);
+			initObject();
+			choiceSizeRoad(*roadCommand);
+			statistic->setView(*stateView);
+
+			// Set level game 1.
+			roadCommand->setDifficult(global::DIFFICULT_LEVEL_ONE);
 		}
 
+		// Level game 2. 
 		if (statistic->getDistance() >= global::LEVEL_ONE && statistic->getDistance() <= global::LEVEL_TWO && countLevel == 0)
 		{
 			system("cls");
 			cout << "level 2" << endl;
 			system("pause");
 
-			control->UpLevel(global::DIFFICULT_LEVEL_ONE);
+			roadCommand->setDifficult(global::DIFFICULT_LEVEL_TWO);
 			countLevel++;
 			system("cls");
 		}
 
+		// Level game 3.
 		if (statistic->getDistance() >= global::LEVEL_TWO && statistic->getDistance() <= global::LEVEL_THREE && countLevel == 1)
 		{
 			system("cls");
 			cout << "level 3" << endl;
 			system("pause");
 
-			control->UpLevel(global::DIFFICULT_LEVEL_TWO);
+			roadCommand->setDifficult(global::DIFFICULT_LEVEL_THREE);
 			countLevel++;
 			system("cls");
 		}
 
+		// Level game 4.
 		if (statistic->getDistance() >= global::LEVEL_THREE && statistic->getDistance() <= global::LEVEL_FOUR && countLevel == 2)
 		{
 			system("cls");
 			cout << "level 4" << endl;
 			system("pause");
 
-			control->UpLevel(global::DIFFICULT_LEVEL_THREE);
+			roadCommand->setDifficult(global::DIFFICULT_LEVEL_FOUR);
 			countLevel++;
 			system("cls");
 		}
 
+		// Level game 5
 		if (statistic->getDistance() >= global::LEVEL_FOUR && countLevel == 3)
 		{
 			system("cls");
 			cout << "level 5" << endl;
 			system("pause");
 
-			control->UpLevel(global::DIFFICULT_LEVEL_FOUR);
+			roadCommand->setDifficult(global::DIFFICULT_LEVEL_FIVE);
 			countLevel++;
 			system("cls");
 		}
 
-		// Save game
+		// Save game.
 		if (GetAsyncKeyState(VK_SPACE))
 		{
 			system("cls");
 			cout << "Game saving" << endl;
 			system("pause");
-			int x;
-			control->saveGame(statistic);
+
+			roadCommand->saveGame(statistic);
 			system("cls");
 		}
 
-		// Pause manu
+		// Pause menu.
 		if (GetAsyncKeyState(VK_RETURN))
 		{
 			system("cls");
@@ -109,54 +119,55 @@ void Game::Run()
 		// Cranking pressing of keys of acceleration and turn of the car. 
 		if (GetAsyncKeyState(VK_RIGHT))
 		{
-			if (control->isFail(global::CAR_CONTROL::RIGHT))
+			if (roadCommand->isFail(global::CAR_CONTROL::RIGHT))
 			{
-				break;
+				isGameOver = true;
 			}
 
-			control->turnRight();
+			roadCommand->turnRight();
 		}
 
 		if (GetAsyncKeyState(VK_LEFT))
 		{
-			if (control->isFail(global::CAR_CONTROL::LEFT))
+			if (roadCommand->isFail(global::CAR_CONTROL::LEFT))
 			{
-				break;
+				isGameOver = true;
 			}
 
-			control->turnLeft();
+			roadCommand->turnLeft();
 		}
 
 		if (GetAsyncKeyState(VK_DOWN))
 		{
-			if (control->isFail(global::CAR_CONTROL::DOWN))
+			if (roadCommand->isFail(global::CAR_CONTROL::DOWN))
 			{
-				break;
+				isGameOver = true;
 			}
 
 			statistic->setSpeed(global::CAR_CONTROL::DOWN);
-			control->turnDown();
+			roadCommand->turnDown();
 		}
 
 		if (GetAsyncKeyState(VK_UP))
 		{	
-			if (control->isFail(global::CAR_CONTROL::UP))
+			if (roadCommand->isFail(global::CAR_CONTROL::UP))
 			{
-				break;
+				isGameOver = true;
 			}
 
 			statistic->setSpeed(global::CAR_CONTROL::UP);
-			control->turnUp();
+			roadCommand->turnUp();
 		}
 
 
 		statistic->setTime(startTime);
-		statistic->viewStatistic(statistic->isView());
+ 		statistic->viewStatistic(statistic->isView());
 
-		control->setBlockOnRoad();
-		control->viewRoad();
+		roadCommand->setBlockOppositeLine();
+		roadCommand->setBlockRoadLine();
+		roadCommand->viewRoad();
 
-		// View game key 
+		// View game key.
 		if (countPressTab % 2 == 0)
 		{
 			massageGameKey();
@@ -170,18 +181,18 @@ void Game::Run()
 			
 			if (countPressTab & 1 == 1) 
 			{
-				//state = new CloseState(statistic);
+				stateView = new CloseState(*statistic);
 			}
 			else {
-				//state = new CalculateState(statistic);
+				stateView = new OpenState(*statistic);
 			}
 
-			statistic->setView(state);
+			statistic->setView(*stateView);
 		}
 
-		if (control->isFail(global::CAR_CONTROL::NONE))
+		if (roadCommand->isFail(global::CAR_CONTROL::NONE))
 		{
-			break;
+			isGameOver = true;
 		}
 	
 
@@ -191,7 +202,30 @@ void Game::Run()
 
 		if (GetAsyncKeyState(VK_ESCAPE)) break; //Exit loop.
 
-		count++;
+		if (isGameOver == true)
+		{
+			int choiceUser = 0;
+
+			system("cls");
+			cout << "Do you want to play again, 1-yes, 2-no ?" << endl;
+
+			while (choiceUser != 1 && choiceUser != 2)
+			{
+				cin >> choiceUser;
+				switch (choiceUser) {
+					case 1:
+						isGameOver = false;
+						count = 0;
+						break;
+					case 2:
+						isGameOver = true;
+						break;
+				}
+			}	
+		
+			if (choiceUser == 2) break;
+			system("cls");
+		}
 	}
 
 	system("cls");
@@ -215,7 +249,7 @@ void Game::redrawing(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void Game::choiceSizeRoad(Control* control)
+void Game::choiceSizeRoad(RoadCommand& roadCommand)
 {
 	int action = 0;
 
@@ -226,19 +260,25 @@ void Game::choiceSizeRoad(Control* control)
 
 		if(action == 1)
 		{ 
-			control->startGame(global::SIX_WAY_ROAD);
+			stateRoad = new SixLineState(roadCommand);
+			roadCommand.setSizeRoad(*stateRoad);
+			roadCommand.sizeRoad();
+			roadCommand.initializationRoad();
 			break;
 		}
 			
 		if (action == 2)
 		{
-			control->startGame(global::FOUR_WAY_ROAD);
+			stateRoad = new FourLineState(roadCommand);
+			roadCommand.setSizeRoad(*stateRoad);
+			roadCommand.sizeRoad();
+			roadCommand.initializationRoad();
 			break;
 		}
 
 		if (action == 3)
 		{
-			if (control->startSaveGame() == true)
+			if (roadCommand.startSaveGame() == true)
 			{
 				break;
 			}
@@ -249,7 +289,7 @@ void Game::choiceSizeRoad(Control* control)
 Game::~Game()
 {
 	// Clear memory.
-	delete state;
-	delete control;
+	delete stateView;
+	delete roadCommand;
 	delete statistic;
 }

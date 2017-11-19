@@ -250,12 +250,6 @@ void RoadCommand::setDifficult(int _difficult)
 	difficult = _difficult;
 }
 
-void RoadCommand::setSizeRoad(int _height, int _width)
-{
-	HEIGHT_ROAD = _height;
-	WIDTH_ROAD = _width;
-}
-
 void RoadCommand::viewRoad()
 {
 	cout << endl;
@@ -421,7 +415,9 @@ bool RoadCommand::startSaveGame()
 			countLine++;
 		}
 
-		setSizeRoad(height, width);
+		// Initialization size road.
+		HEIGHT_ROAD = height;
+		WIDTH_ROAD = width;
 		initializationRoad();
 
 		int count = 0;

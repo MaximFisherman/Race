@@ -1,19 +1,20 @@
-#ifndef __CLOSE_STATE_H__
-#define __CLOSE_STATE_H__
+#ifndef __OPEN_STATE_H__
+#define __OPEN_STATE_H__
 
 #include "StateView.h"
 #include "Statistic.h"
 
-class CloseState :
+class OpenState :
 	public StateView
 {
+
 public:
-	CloseState(const Statistic& _statistic);
+	OpenState(const Statistic& _statistic);
 
 	bool View();
 	bool Clear();
 
-	~CloseState();
+	~OpenState();
 
 private:
 	Statistic* statistic;
